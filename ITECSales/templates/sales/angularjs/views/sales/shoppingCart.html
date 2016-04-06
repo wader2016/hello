@@ -1,0 +1,77 @@
+<div class="main" ng-controller="ShoppingCartController">
+    <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+            <!-- BEGIN CONTENT -->
+            <div class="col-md-12 col-sm-12">
+                <h1>购物车</h1>
+                <div class="goods-page">
+                    <div class="goods-data clearfix">
+                        <div class="table-wrapper-responsive">
+                            <table summary="Shopping cart">
+                                <tr>
+                                    <th class="goods-page-image">图片</th>
+                                    <th class="goods-page-description">商品描述</th>
+                                    <th class="goods-page-quantity">数量</th>
+                                    <th class="goods-page-price">单价</th>
+                                    <th class="goods-page-total" colspan="2">总金额</th>
+                                </tr>
+                                <tr ng-repeat="list in listCart track by $index">
+                                    <td class="goods-page-image">
+                                        <a href="#"> <img src="pictures/smallPic/{{list.ProductId}}.jpg" class="img-responsive" alt="Berry Lace Dress"></a>
+                                    </td>
+                                    <td class="goods-page-description">
+                                        <h3><a href="#">{{list.ProductName1}}<br/>{{list.ProductName2}}</a></h3>
+                                        <p><strong>规格</strong> - 颜色: {{list.ProductColor}}; 尺寸:{{list.ProductSize}}</p>
+                                    </td>
+                                    <td class="goods-page-quantity">
+                                        <div class="product-quantity">
+                                            <input id="product-quantity3" type="text" value="{{list.ProductQty}}" readonly class="form-control input-sm" ng-model="quantity">
+                                                <span class="input-group-btn">
+                                                    <button class="btn quantity-up bootstrap-touchspin-up" type="button" style="position: absolute" ng-click="addList($index)">
+                                                        <i class="fa fa-angle-up"></i>
+                                                    </button>
+                                                </span>
+                                                <span class="input-group-btn">
+                                                    <button class="btn quantity-down bootstrap-touchspin-down" type="button" style="position: absolute" ng-click="subtractList($index)">
+                                                        <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                </span>
+                                        </div>
+                                    </td>
+                                    <td class="goods-page-price">
+                                        <strong><span>￥</span>{{list.SalesPrice|number:2}}</strong>
+                                    </td>
+                                    <td class="goods-page-total">
+                                        <strong><span>￥</span>{{list.SalesPrice * list.ProductQty|number:2}}</strong>
+                                    </td>
+                                    <td class="del-goods-col">
+                                        <a class="del-goods" href="#" ng-click="deleteList($index)">&nbsp;</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="shopping-total">
+                            <ul>
+                                <!--<li>-->
+                                    <!--<em>总价：</em>-->
+                                    <!--<strong class="price"><span>￥</span>{{totalPrice|number:2}}</strong>-->
+                                <!--</li>-->
+                                <li class="shopping-total-price">
+                                    <em>总金额：</em>
+                                    <strong class="price"><span>￥</span>{{totalPrice|number:2}}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="#/shop/productList.html" class="btn btn-default" type="button">继续购物 <i class="fa fa-shopping-cart"></i></a>
+                    <a href="#/shop/shopCheckOut.html" data-ng-disabled="listCart.length == 0" class="btn btn-danger checkout" type="button" ng-click="submitList()">提交订单 <i class="fa fa-check"></i></a>
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+
+    </div>
+</div>

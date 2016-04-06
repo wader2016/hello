@@ -1,0 +1,201 @@
+<div ng-controller="CompanySettingController">
+    <div class="profile-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light" id="myTab">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption caption-md">
+                            <i class="icon-globe theme-font hide"></i>
+                            <span class="caption-subject font-blue-madison bold uppercase">企业设置</span>
+                        </div>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab_1_1" data-toggle="tab">企业信息</a>
+                            </li>
+                            <li>
+                                <a href="#tab_1_2" data-toggle="tab">联络人信息</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="tab-content" style="background: #ffffff">
+                            <div class="tab-pane active" id="tab_1_1">
+                                <div class="portlet light form-fit">
+                                    <div class="portlet-body form">
+                                        <form class="form-horizontal" name="company_save" ng-submit="companySave()">
+                                            <div class="form-group" style="margin-top: 15px">
+                                                <label class="control-label col-md-3">企业简称</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="companyAbbr" ng-model="companyAbbr"  class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style="margin-top: 15px">
+                                                <label class="control-label col-md-3">企业名称</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="defaultCompanyName" ng-model="defaultCompanyName" class="form-control"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">主要负责人</label>
+                                                <div class="col-md-6">
+                                                    <p style="font-size: 14px" data-ng-model="defaultName" class="form-control-static">{{defaultName}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">电话</label>
+                                                <div class="col-md-6">
+                                                    <p style="font-size: 14px" data-ng-model="defaultTel" class="form-control-static">{{defaultTel}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">详细地址</label>
+                                                <div class="col-md-6">
+                                                    <p style="font-size: 14px" data-ng-model="defaultAddress" class="form-control-static">{{defaultAddress}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3"></label>
+                                                <div  class="col-md-6">
+                                                    <button type="submit" class="btn green-haze" data-ng-disabled="company_save.$invalid">
+                                                        保存</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_1_2">
+                                <form class="form-horizontal form-row-seperated" name="addressForm" ng-submit="saveInfo()">
+                                    <h5 style="margin-bottom: 20px" ng-if="showList==false"><span style="color: red">新增联络人</span>&nbsp;&nbsp;&nbsp;<span>联络人姓名、邮箱为必填项</span></h5>
+                                    <h5 style="margin-bottom: 20px" ng-if="showList==true"><span style="color: red">修改收联络人</span>&nbsp;&nbsp;&nbsp;<span>联络人姓名、邮箱为必填项</span></h5>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">联络人姓名</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <input type="text" class="form-control" ng-model="acceptName" placeholder="请输入联络人的姓名" required/>
+                                        </div>
+                                    </div>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">联络人邮箱</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <input type="email" class="form-control" ng-model="email" placeholder="请输入联络人的邮箱" required/>
+                                        </div>
+                                    </div>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">部门</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <select class="form-control" ng-options="item as item.Description for item in GeneralDepartment" data-ng-model="department">
+                                                <option value="">--请选择部门--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">头衔</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <select class="form-control" ng-options="item as item.Description for item in GeneralTitle" data-ng-model="title">
+                                                <option value="">--请选择头衔--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">角色</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <select class="form-control" ng-options="item as item.Description for item in GeneralRole" data-ng-model="role">
+                                                <option value="">--请选择角色--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">手机号码</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <input type="text" class="form-control" ng-model="phoneNum" placeholder="请输入手机号码"/>
+                                        </div>
+                                    </div>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">电话号码</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <input type="text" class="form-control" ng-model="telNumber" placeholder="请输入电话号码"/>
+                                        </div>
+                                    </div>
+                                    <div class="margin-top-20">
+                                        <div class="col-md-offset-2" style="padding-left: 9px">
+                                            <label for="defaultSet"><input type="checkbox" id="defaultSet" ng-checked="defaultCheck==true"  ng-click="setDefault()"/>设为默认联络人</label>
+
+                                        </div>
+                                        <div class="col-md-offset-2" style="padding-left: 13px;margin-top: 10px">
+                                            <button class="btn green-haze">
+                                                保存 </button>
+                                        </div>
+                                    </div>
+                                    <div class="from-group" style="margin-top: 20px" >
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>联络人</th>
+                                                <th>部门</th>
+                                                <th>角色</th>
+                                                <th>座机/手机</th>
+                                                <th>邮箱</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="item in contactList track by $index" ng-mouseenter="showDefault($index)" ng-mouseleave="hideDefault($index)">
+                                                <td>{{item.Name}}</td>
+                                                <td>{{item.Department}}</td>
+                                                <td>{{item.Role}}</td>
+                                                <td>{{item.Tel1}} <br/>
+                                                    {{item.Tel2}}</td>
+                                                <td>{{item.Email1}}</td>
+                                                <td><a href="#" ng-click="updateInfo($index)">修改</a>|<a href="#" data-toggle="modal" data-target="#myModal" ng-click="viewModal($index)">删除</a>
+                                                    <div class="modal " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="top:45%;margin-top:-80px">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">提示</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h3>确定要删除么?</h3>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteInfo()">确定</button>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 100px;">
+                                                    <div>
+                                                        <button ng-show="item.defaultSet == true" type="button" class="btn btn-default btn-xs"> 默认联络人</button>
+                                                        <button ng-show="item.showSet==true" type="button" class="btn btn-default btn-xs" ng-click="changeAddress($index)">设为默认</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+        });
+    })
+</script>
+
+<script>
+    jQuery(document).ready(function() {
+        Todo.init();
+    });
+</script>

@@ -1,0 +1,157 @@
+<!-- BEGIN HEADER TOP -->
+<div class="page-header-top">
+	<div class="container">
+		<!-- BEGIN LOGO -->
+		<div class="page-logo">
+			<a href="#/dashboard.html"><img src="assets/admin/layout3/img/logo-default.png" alt="logo" class="logo-default"></a>
+		</div>
+		<!-- END LOGO -->
+		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+		<a href="javascript:;" class="menu-toggler"></a>
+		<!-- END RESPONSIVE MENU TOGGLER -->
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<div class="top-menu">
+			<ul class="nav navbar-nav pull-right" ng-if="authentication.isAuth==true">
+				<!-- BEGIN NOTIFICATION DROPDOWN -->
+				<li class="dropdown dropdown-extended dropdown-dark dropdown-notification" id="header_notification_bar">
+					<a href="#/sales/shoppingCart.html" style="background-color: #ffffff" data-hover="dropdown" data-close-others="true">
+					<i class="icon-basket"></i>&nbsp;购物车
+					<span class="badge badge-danger" style="right: auto">{{listCart.length}}</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li class="external">
+							<h3>购物车中有<strong>{{listCart.length}}件</strong>商品</h3>
+							<a href="#/sales/shoppingCart.html">查看全部</a>
+						</li>
+						<li>
+							<ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
+								<li ng-if="listCart.length>0"  ng-repeat="list in listCart track by $index">
+									<a href="#">
+										<span class="time" ng-click="deleteCart($index)">删除</span>
+									<span class="details">
+									<span>
+										<img src="pictures/icon-pictures/{{list.ProductId}}.jpg"/>
+									</span>
+									{{list.ProductName1}} </span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<div>
+								<button style="margin-bottom: 10px;font-size:15px;color: #A2ABB7;background-color:#2E343B;border-color:#1b2732;float: left;margin-left: 15px" class="btn btn-default btn-xs" ng-click="clearCart()">清空购物车</button>
+								<button style="margin-bottom: 10px;font-size:15px;color: #A2ABB7;background-color:#2E343B;border-color:#1b2732;float: right;margin-right: 10px" class="btn btn-default btn-xs" ng-click="checkOut()">结算</button>
+							</div>
+						</li>
+					</ul>
+				</li>
+				<!-- END NOTIFICATION DROPDOWN -->
+				<!-- BEGIN TODO DROPDOWN -->
+				<li class="dropdown dropdown-extended dropdown-dark dropdown-tasks" id="header_task_bar">
+					<a href="#" style="background-color: #ffffff" ng-click="myOrder()">
+					<i class="icon-calculator"></i>&nbsp;我的订单
+					<span class="badge badge-danger" style="right: auto">{{orderLength}}</span>
+					</a>
+
+				</li>
+				<!-- END TODO DROPDOWN -->
+				<li class="droddown dropdown-separator">
+					<span class="separator"></span>
+				</li>
+				<!-- BEGIN INBOX DROPDOWN -->
+				<li class="dropdown dropdown-extended dropdown-dark dropdown-inbox" id="header_inbox_bar">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					<span class="circle">3</span>
+					<span class="corner"></span>
+					</a>
+				</li>
+				<!-- END INBOX DROPDOWN -->
+				<!-- BEGIN USER LOGIN DROPDOWN -->
+				<li class="dropdown dropdown-user dropdown-dark">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					<img alt="" class="img-circle" src="{{headImg}}" onload="AutoResizeImage(40,40,this)">
+					<span class="username username-hide-mobile">{{Nick}}</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-default">
+						<li>
+							<a href="#/managements/userProfile/accountSetting">
+							<i class="icon-user"></i> 用户管理 </a>
+						</li>
+						<li>
+							<a href="#">
+							<i class="icon-envelope-open"></i> 产品管理
+							</a>
+						</li>
+						<li class="divider">
+						</li>
+						<li>
+							<a ng-click="logOut()">
+							<i class="icon-key"></i>退出 </a>
+						</li>
+					</ul>
+				</li>
+				<!-- END USER LOGIN DROPDOWN -->
+			</ul>
+		</div>
+		<!-- END TOP NAVIGATION MENU -->
+	</div>
+</div>
+<!-- END HEADER TOP -->
+<!-- BEGIN HEADER MENU -->
+<div class="page-header-menu">
+	<div class="container">
+		<!-- BEGIN HEADER SEARCH BOX -->
+		<form class="search-form" ng-if="authentication.isAuth==true">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="搜索" ng-model="searchProduct" >
+				<span class="input-group-btn">
+				<a href="#" class="btn" ng-click="search()"><i class="icon-magnifier"></i></a>
+				</span>
+			</div>
+		</form>
+		<div class="hor-menu">
+			<ul class="nav navbar-nav" ng-if="authentication.isAuth==true">
+				<li class="active">
+					<a href="#/sales/productList/all">
+						<i class="icon-bar-chart"></i>
+						所有车型
+						</a>
+				</li>
+				<li class="menu-dropdown mega-menu-dropdown" ng-repeat="menu in menuData">
+					<a data-close-others="true" class="dropdown-toggle" data-hover="dropdown">
+					{{menu.Name}} <i class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu" style="width: 250px" ng-if="menu.module.length>0" >
+						<li>
+							<div class="mega-menu-content">
+								<div class="row">
+									<div class="col-md-12" ng-repeat="item in menu.module">
+										<ul class="mega-menu-submenu">
+											<li>
+												<a href={{item.url}} class="iconify">
+													<i class="fa fa-angle-right"></i>
+													{{item.Name}}
+													<span class="badge badge-roundless badge-danger">{{item.FlagInfo}}</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+		<!-- END MEGA MENU -->
+	</div>
+</div>
+<!-- END HEADER MENU -->
+
+<script type="text/javascript">
+	function AutoResizeImage(maxWidth,maxHeight,objImg){
+		objImg.height = maxHeight;
+		objImg.width = maxWidth;
+	}
+</script>

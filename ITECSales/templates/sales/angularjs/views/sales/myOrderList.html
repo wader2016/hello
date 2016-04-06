@@ -1,0 +1,532 @@
+<div class="container" ng-controller="MyOrderListController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light">
+                <div class="portlet-body" id="myTab">
+                    <div class="tabbable-line">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab_15_1" data-toggle="tab" style="background-color: #ffffff">
+                                    所有订单&nbsp;<span class="badge badge-danger">{{orderInfo.length}}</span></a>
+                            </li>
+                            <li>
+                                <a href="#tab_15_2" data-toggle="tab" style="background-color: #ffffff" ng-click="loadOrder(2)">
+                                   待付款&nbsp;<span class="badge badge-danger">{{orderPayInfo.length}}</span> </a>
+                            </li>
+                            <li>
+                                <a href="#tab_15_3" data-toggle="tab" style="background-color: #ffffff">
+                                    待发货&nbsp;<span class="badge badge-danger">{{orderDeliverInfo.length}}</span></a>
+                            </li>
+                            <li>
+                                <a href="#tab_15_4" data-toggle="tab" style="background-color: #ffffff">
+                                    待收货&nbsp;<span class="badge badge-danger">{{orderReceiveInfo.length}}0</span></a>
+                            </li>
+                            <li>
+                                <a href="#tab_15_5" data-toggle="tab" style="background-color: #ffffff">
+                                    待评价&nbsp;<span class="badge badge-danger">{{orderReviewInfo.length}}</span></a>
+                            </li>
+                            <li>
+                                <a href="#tab_15_6" data-toggle="tab" style="background-color: #ffffff">
+                                    退款/售后&nbsp;<span class="badge badge-danger">0</span></a>
+                            </li>
+                        </ul>
+                        <hr/>
+                        <div>
+                            <div class="tab-content" style="background-color: #ffffff">
+                                <div class="tab-pane active" id="tab_15_1">
+                                    <div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" ng-model="productName" placeholder="请输入产品名称进行搜索"/>
+                                                <span class="input-group-btn">
+                                                 <button class="btn btn-default" ng-click="searchProduct()">搜索</button>
+                                                </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div style="margin-top: 7px">
+                                                        <a href="#" ng-if="isShow==false" data-toggle="collapse" data-target="#collapseList" ng-click="ShowDropDown()" >
+                                                            更多搜索条件<i class="fa fa-angle-double-down"></i>
+                                                        </a>
+                                                        <a href="#" ng-if="isShow==true" data-toggle="collapse" data-target="#collapseList" ng-click="ShowDropDown()" >
+                                                            收起搜索条件<i class="fa fa-angle-double-up"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="collapse" id="collapseList" style="margin-bottom: 40px">
+                                                <div class="row" style="margin: 20px auto">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2" style="padding-top: 7px">成交时间</label>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control date date-picker" ng-model="dateFrom" data-date-format="yyyy-mm-dd" placeholder="开始"/>
+                                                            </div>
+                                                            <div class="col-md-1" style="margin: 5px -15px">
+                                                                <span>--</span>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" class="form-control date date-picker" ng-model="dateTo" data-date-format="yyyy-mm-dd" placeholder="结束"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2" style="padding-top: 7px">订单编号</label>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" ng-model="salesOrderId"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin: 20px 0">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2" style="padding-top: 7px">产品编号</label>
+                                                            <div class="col-md-6">
+                                                                <input type="text" class="form-control" ng-model="productCode"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-2" style="padding-top: 7px">交易状态</label>
+                                                            <div class="col-md-6">
+                                                                <select class="form-control" ng-options="item as item.Name for item in items" data-ng-model="item" data-ng-change="changeStatus(item)">{{status}}
+                                                                    <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--<div class="row" style="margin: 20px auto">-->
+                                                <!--<div class="col-md-6">-->
+                                                <!--<button class="btn btn-default" style="margin-left: 15px">搜索</button>-->
+                                                <!--</div>-->
+                                                <!--</div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portlet light" ng-repeat="item in listCount track by $index">
+                                        <div class="portlet-title">
+                                            <div class="order-title">
+                                                <a ng-click="viewOrderDetail(item)">
+                                                    订单号：{{item.DocCode}}&nbsp;&nbsp;
+                                                    订单日期：{{item.OrderDate|date:"yyyy-MM-dd HH:mm:ss"}}&nbsp;&nbsp;
+                                                    卖方：{{item.SellerContactInfo}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-scrollable table-scrollable-borderless">
+                                                <table class="table table-light table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>图片</th>
+                                                        <th>商品描述</th>
+                                                        <th>规格</th>
+                                                        <th class="hidden-xs">数量</th>
+                                                        <th class="hidden-xs">单价</th>
+                                                        <th align="right"> 总金额</th>
+                                                        <th>订单状态</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="list in item.SalesOrderLines track by $index">
+                                                            <td class="goods-page-image">
+                                                           <img src="pictures/smallPic/{{list.ProductId}}.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                                            </td>
+                                                            <td>
+                                                            {{list.ProductName1}}<br/>{{list.ProductName2}}
+                                                            </td>
+                                                            <td>
+                                                                颜色: {{list.ProductColor}}<br/> 尺寸:{{list.ProductSize}}
+                                                            </td>
+                                                            <td class="goods-page-quantity">
+                                                            <div class="product-quantity">
+                                                            <span>{{list.ProductQty}}</span>
+                                                            </div>
+                                                            </td>
+                                                            <td>
+                                                                <span>￥</span>{{list.SalesPrice|number:2}}
+                                                            </td>
+                                                            <td>
+                                                            <span>￥</span>{{list.SalesPrice * list.ProductQty|number:2}}
+                                                            </td>
+                                                            <td>
+                                                                <span class="label label-sm label-success label-mini">{{item.Status|salesFilter}}</span>
+                                                            </td>
+                                                            <td class="del-goods-col">
+                                                            <a class="del-goods" href="#" ng-click="deleteList($index)">&nbsp;</a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ng-pagination conf="paginationConf"></ng-pagination>
+                                </div>
+                                <div class="tab-pane" id="tab_15_2">
+                                    <div class="portlet light" ng-repeat="item in orderPayInfo track by $index">
+                                        <div class="portlet-title">
+                                            <div class="order-title row">
+                                                <div class="col-md-10">
+                                                    <a  ng-click="viewOrderDetail(item)">
+                                                        订单号：{{item.DocCode}}&nbsp;&nbsp;
+                                                        订单日期：{{item.OrderDate|date:"yyyy-MM-dd HH:mm:ss"}}&nbsp;&nbsp;
+                                                        卖方：{{item.SellerContactInfo}}
+                                                    </a>
+
+                                                </div>
+                                               <div class="col-md-2">
+                                                   <div class="btn-group" style="float: right">
+                                                       <button type="button" class="btn btn-default btn-xs" ng-click="confirmPay($index)">付款</button>
+                                                   </div>
+                                               </div>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-scrollable table-scrollable-borderless">
+                                                <table class="table table-light table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>图片</th>
+                                                        <th>商品描述</th>
+                                                        <th>规格</th>
+                                                        <th class="hidden-xs">数量</th>
+                                                        <th class="hidden-xs">单价</th>
+                                                        <th align="right"> 总金额</th>
+                                                        <th>订单状态</th>
+                                                        <th>操作</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="list in item.SalesOrderLines track by $index">
+                                                        <td class="goods-page-image">
+                                                            <img src="pictures/smallPic/{{list.ProductId}}.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                                        </td>
+                                                        <td>
+                                                            {{list.ProductName1}}<br/>{{list.ProductName2}}
+                                                        </td>
+                                                        <td>
+                                                            颜色: {{list.ProductColor}}<br/>尺寸:{{list.ProductSize}}
+                                                        </td>
+                                                        <td class="goods-page-quantity">
+                                                            <div class="product-quantity">
+                                                                <span>{{list.ProductQty}}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <span>￥</span>{{list.SalesPrice|number:2}}
+                                                        </td>
+                                                        <td>
+                                                            <span>￥</span>{{list.SalesPrice * list.ProductQty|number:2}}
+                                                        </td>
+                                                        <td>
+                                                            <span class="label label-sm label-success label-mini">{{item.Status|salesFilter}}</span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn default btn-xs green-stripe">
+                                                                待付款 </a>
+                                                        </td>
+                                                        <td class="del-goods-col">
+                                                            <a class="del-goods" href="#" ng-click="deleteList($index)">&nbsp;</a>
+                                                        </td>
+
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab_15_3">
+                                    <div class="portlet light" ng-repeat="item in orderDeliverInfo track by $index">
+                                        <div class="portlet-title">
+                                            <div class="order-title row">
+                                                <div class="col-md-10">
+                                                    <a ng-click="viewOrderDetail(item)">
+                                                        订单号：{{item.DocCode}}&nbsp;&nbsp;
+                                                        订单日期：{{item.OrderDate|date:"yyyy-MM-dd HH:mm:ss"}}&nbsp;&nbsp;
+                                                        卖方：{{item.SellerContactInfo}}
+                                                    </a>
+                                                </div>
+                                               <div class="col-md-2">
+                                                   <div class="btn-group" style="float: right">
+                                                       <button type="button" class="btn btn-default btn-xs" ng-click="confirmDeliver($index)">确认收货
+                                                       </button>
+                                                   </div>
+                                               </div>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-scrollable table-scrollable-borderless">
+                                                <table class="table table-light table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>图片</th>
+                                                        <th>商品描述</th>
+                                                        <th>规格</th>
+                                                        <th class="hidden-xs">数量</th>
+                                                        <th class="hidden-xs">单价</th>
+                                                        <th align="right"> 总金额</th>
+                                                        <th>订单状态</th>
+                                                        <th>操作</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="list in item.SalesOrderLines track by $index">
+                                                        <td class="goods-page-image">
+                                                            <img src="pictures/smallPic/{{list.ProductId}}.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                                        </td>
+                                                        <td>
+                                                            {{list.ProductName1}}<br/>{{list.ProductName2}}
+                                                        </td>
+                                                        <td>
+                                                            颜色: {{list.ProductColor}} <br/>尺寸:{{list.ProductSize}}
+                                                        </td>
+                                                        <td class="goods-page-quantity">
+                                                            <div class="product-quantity">
+                                                                <span>{{list.ProductQty}}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <span>￥</span>{{list.SalesPrice|number:2}}
+                                                        </td>
+                                                        <td>
+                                                            <span>￥</span>{{list.SalesPrice * list.ProductQty|number:2}}
+                                                        </td>
+                                                        <td>
+                                                            <span class="label label-sm label-success label-mini">{{item.Status|salesFilter}}</span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn default btn-xs green-stripe">确认收货 </a>
+                                                        </td>
+                                                        <td class="del-goods-col">
+                                                            <a class="del-goods" href="#" ng-click="deleteList($index)">&nbsp;</a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab_15_4">
+                                    <div class="portlet light" ng-repeat="item in orderReceiveInfo track by $index">
+                                        <div class="portlet-title">
+                                            <div class="order-title row">
+                                                <div class="col-md-10">
+                                                    订单号：{{item.DocCode}}&nbsp;&nbsp;
+                                                    订单日期：{{item.OrderDate|date:"yyyy-MM-dd HH:mm:ss"}}&nbsp;&nbsp;
+                                                    卖方：{{item.SellerContactInfo}}
+                                                </div>
+                                               <div class="col-md-2">
+                                                   <div class="btn-group" style="float: right">
+                                                       <button type="button" class="btn btn-default btn-xs" ng-click="confirmReceive($index)">确认签收</button>
+                                                   </div>
+                                               </div>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-scrollable table-scrollable-borderless">
+                                                <table class="table table-light table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>图片</th>
+                                                        <th>商品描述</th>
+                                                        <th>规格</th>
+                                                        <th class="hidden-xs">数量</th>
+                                                        <th class="hidden-xs">单价</th>
+                                                        <th align="right"> 总金额</th>
+                                                        <th>订单状态</th>
+                                                        <th>操作</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="list in item.SalesOrderLines track by $index">
+                                                        <td class="goods-page-image">
+                                                            <img src="pictures/smallPic/{{list.ProductId}}.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                                        </td>
+                                                        <td>
+                                                            {{list.ProductName1}}<br/>{{list.ProductName2}}
+                                                        </td>
+                                                        <td>
+                                                            颜色: {{list.ProductColor}} <br/>尺寸:{{list.ProductSize}}
+                                                        </td>
+                                                        <td class="goods-page-quantity">
+                                                            <div class="product-quantity">
+                                                                <span>{{list.ProductQty}}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <span>￥</span>{{list.SalesPrice|number:2}}
+                                                        </td>
+                                                        <td>
+                                                            <span>￥</span>{{list.SalesPrice * list.ProductQty|number:2}}
+                                                        </td>
+                                                        <td>
+                                                            <span class="label label-sm label-success label-mini">{{item.Status|salesFilter}}</span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn default btn-xs green-stripe">确认签收 </a>
+                                                        </td>
+                                                        <td class="del-goods-col">
+                                                            <a class="del-goods" href="#" ng-click="deleteList($index)">&nbsp;</a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab_15_5">
+                                    <div class="portlet light" ng-repeat="item in orderReviewInfo track by $index">
+                                        <div class="portlet-title">
+                                            <div class="order-title row">
+                                                <div class="col-md-10">
+                                                    <a href="#" ng-click="viewOrderDetail(item)">
+                                                        订单号：{{item.DocCode}}&nbsp;&nbsp;
+                                                        订单日期：{{item.OrderDate|date:"yyyy-MM-dd HH:mm:ss"}}&nbsp;&nbsp;
+                                                        卖方：{{item.SellerContactInfo}}
+                                                    </a>
+
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="btn-group" style="float: right">
+                                                        <button type="button" class="btn btn-default btn-xs" ng-click="confirmReview($index)">评价订单</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="portlet-body">
+                                            <div class="table-scrollable table-scrollable-borderless">
+                                                <table class="table table-light table-hover">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>图片</th>
+                                                        <th>商品描述</th>
+                                                        <th>规格</th>
+                                                        <th class="hidden-xs">数量</th>
+                                                        <th class="hidden-xs">单价</th>
+                                                        <th align="right"> 总金额</th>
+                                                        <th>订单状态</th>
+                                                        <th>操作</th>
+                                                        <th></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="list in item.SalesOrderLines track by $index">
+                                                        <td class="goods-page-image">
+                                                            <img src="pictures/smallPic/{{list.ProductId}}.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                                        </td>
+                                                        <td>
+                                                            {{list.ProductName1}}<br/>{{list.ProductName2}}
+                                                        </td>
+                                                        <td>
+                                                            颜色: {{list.ProductColor}} <br/>尺寸:{{list.ProductSize}}
+                                                        </td>
+                                                        <td class="goods-page-quantity">
+                                                            <div class="product-quantity">
+                                                                <span>{{list.ProductQty}}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <span>￥</span>{{list.SalesPrice|number:2}}
+                                                        </td>
+                                                        <td>
+                                                            <span>￥</span>{{list.SalesPrice * list.ProductQty|number:2}}
+                                                        </td>
+                                                        <td>
+                                                            <span class="label label-sm label-success label-mini">已签收</span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#" class="btn default btn-xs green-stripe" data-toggle="modal" data-target="#review" ng-click="reviewOrderLine(list)">评价订单 </a>
+                                                        </td>
+                                                        <td class="del-goods-col">
+                                                            <a class="del-goods" href="#" ng-click="deleteList($index)">&nbsp;</a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="modal fade" id="review" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog" role="dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                <h4 class="modal-title">评价订单</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form role="form">
+                                                                    <div class="form-group">
+                                                                        姓名 <span>*</span>
+                                                                        <input type="text" class="form-control" ng-model="reviewName">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label>电话</label>
+                                                                        <input type="text" class="form-control" ng-model="reviewTel">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        评价 <span>*</span>
+                                                                        <textarea class="form-control" rows="4" data-ng-model="reviewText"></textarea>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="saveReview()">保存</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab_15_6">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4 items-info">Items 1 to 9 of 10 total</div>
+        <div class="col-md-8 col-sm-8">
+            <ul class="pagination pull-right">
+                <li ng-class="{true:'disabled'}[currentPage==1]">
+                    <a href="#" ng-click="prev()">&laquo;</a>
+                </li>
+                <li ng-repeat="page in pages" ng-class="{true:'active'}[currentPage==page]">
+                    <a href="#" ng-click="loadPage(page)">{{page}}</a>
+                </li>
+
+                <li ng-class="{true:'disabled'}[currentPage==totalPage]">
+                    <a href="#" ng-click="next()">&raquo;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+        });
+    })
+</script>
+
+<script>
+    $('.date-picker').datepicker();
+</script>

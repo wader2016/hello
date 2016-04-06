@@ -1,0 +1,178 @@
+<div class="main" ng-controller="CheckOutController" >
+    <div class="container">
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row clearfix">
+            <div class="col-md-12">
+                <div class="portlet box grey-cascade ">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-gift"></i>确认收货地址
+                        </div>
+                        <div class="tools">
+                            <!--<a href="javascript:;" class="expand">-->
+                            <!--</a>-->
+                            <a href="#" data-toggle="modal" class="config">
+                            </a>
+                            <a href="javascript:;" class="reload">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-wrapper-responsive">
+                            <div class="">
+                                <table style="width: 100%;border: none">
+                                    <tbody>
+                                        <tr class="payMethod" ng-repeat="item in AddressInfo track by $index" ng-if="$index ==0">
+                                            <td>
+                                                <input type="checkbox" ng-checked="info == $index" ng-click="checkAddress(item,$index)"/>
+                                            </td>
+                                            <td>收货人姓名:&nbsp;{{item.Name}}</td>
+                                            <td>联系电话:&nbsp;{{item.contact.Tel}}</td>
+                                            <td>地址:&nbsp;{{item.AddressLine2}}</td>
+                                            <td style="width: 100px;font-size: 12px">
+                                                <a href="#" ng-if="isShow==false" data-toggle="collapse" data-target="#collapseList" ng-click="ShowDropDown()" >
+                                                    更多地址<i class="fa fa-angle-double-down"></i>
+                                                </a>
+                                                <a href="#" ng-if="isShow==true" data-toggle="collapse" data-target="#collapseList" ng-click="ShowDropDown()" >
+                                                    收起地址<i class="fa fa-angle-double-up"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <div class="collapse" id="collapseList">
+                                <table style="width: 100%;border: none">
+                                    <tbody>
+                                        <tr class="payMethod" ng-repeat="item in AddressInfo track by $index" ng-if="$index !=0">
+                                            <td>
+                                                <input type="checkbox" ng-checked="info == $index" ng-click="checkAddress(item,$index)"/>
+                                            </td>
+                                            <td>
+                                                <div class="orderName">
+                                                    收货人姓名:&nbsp;{{item.Name}}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="orderTel">
+                                                    联系电话:&nbsp;{{item.contact.Tel}}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="orderAddress">
+                                                    地址:&nbsp;{{item.AddressLine2}}
+                                                </div>
+                                            </td>
+                                            <td style="width: 100px;font-size: 12px">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN Portlet PORTLET-->
+                <div class="portlet box grey-cascade ">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-gift"></i>
+                            订单号:&nbsp;&nbsp;{{orderInfo[0].DocCode}}&nbsp;&nbsp;&nbsp;&nbsp;订单日期:&nbsp;&nbsp;{{orderInfo[0].OrderDate|date:"yyyy-MM-dd HH:mm:ss"}}
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span>卖方:&nbsp;&nbsp;{{orderInfo[0].SellerContactInfo}}</span>
+                        </div>
+                        <div class="tools">
+                            <a href="javascript:;" class="collapse">
+                            </a>
+                            <a href="#" data-toggle="modal" class="config">
+                            </a>
+                            <a href="javascript:;" class="reload">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-wrapper-responsive">
+                            <table class="table table-hover" style="width: 100%">
+                                <tr class="order-content">
+                                    <th class="checkout-image" style="width: 10%">图片</th>
+                                    <th class="checkout-description" style="width: 40%">商品描述</th>
+                                    <th style="width: 10%">仓库</th>
+                                    <th class="checkout-quantity" style="width: 10%">数量</th>
+                                    <th class="checkout-price" style="width: 10%">单价</th>
+                                    <th class="checkout-total" style="width: 10%">总金额</th>
+                                    <th style="width: 10%"></th>
+                                </tr>
+                                <tr ng-repeat="list in orderInfo[0].SalesOrderLines track by $index" ng-mouseenter="showButton($index)" ng-mouseleave="hideButton($index)">
+                                    <td class="checkout-image">
+                                        <a href="#"><img src="pictures/smallPic/{{list.ProductId}}.jpg" alt="Berry Lace Dress"></a>
+                                    </td>
+                                    <td class="checkout-description">
+                                       <a href="#">{{list.ProductName1}}<br/>{{list.ProductName2}}</a>
+                                        <p><strong>规格</strong> - 颜色: {{list.ProductColor}}; 尺寸: {{list.ProductSize}}</p>
+                                    </td>
+                                    <td class="checkout-description">
+                                        {{list.StockName}}
+                                    </td>
+                                    <td class="checkout-quantity">
+                                        <div class="product-quantity">
+                                            <input id="product-quantity3" type="text" value="{{list.ProductQty}}" readonly class="form-control input-sm" ng-model="quantity">
+                                            <span class="input-group-btn">
+                                                <button class="btn quantity-up bootstrap-touchspin-up" type="button" style="position: absolute" ng-click="add($index)">
+                                                    <i class="fa fa-angle-up"></i>
+                                                </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                                                <button class="btn quantity-down bootstrap-touchspin-down" type="button" style="position: absolute" ng-click="subtract($index)">
+                                                    <i class="fa fa-angle-down"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="checkout-price"><strong><span>￥</span>{{list.SalesPrice|number:2}}</strong></td>
+                                    <td class="checkout-total">
+                                        <strong><span>￥</span>{{list.SalesPrice * list.ProductQty|number:2}}</strong>
+                                    </td>
+                                    <td style="width: 100px;font-size:12px">
+                                        <span ng-if="list.showBtn==true">
+                                            <button class="btn btn-default btn-xs" ng-click="backShoppingCart(list)">移入购物车</button>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="checkout-total-block">
+                            <ul>
+                                <li class="checkout-total-price">
+                                    <em>总金额</em>
+                                    <strong class="price"><span>￥</span>{{totalPrice|number:2}}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div style="float: left;margin-top: 20px">
+                            <button class="btn pull-right btn-danger" type="button" ng-click="cancelSalesOrder()">取消订单</button>
+                        </div>
+                        <div style="float: right;margin-top: 20px;">
+                            <button class="btn pull-right btn-danger checkout" type="button" ng-click="confirmSalesOrder()">确认订单</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Portlet PORTLET-->
+            </div>
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+    </div>
+</div>
+<script>
+    $(function () {
+
+        $('#accordion a').click(function (e) {
+            e.preventDefault();
+        });
+    })
+</script>

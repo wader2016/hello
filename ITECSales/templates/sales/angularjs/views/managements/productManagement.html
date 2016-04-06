@@ -1,0 +1,99 @@
+<div class="container" ng-controller="ProductManagementController">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption" style="font-size: 14px">
+                    </div>
+                    <div class="actions btn-set">
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-hover" id="sample" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>名称</th>
+                            <th>类别</th>
+                            <th>规格</th>
+                            <th>价格</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="portlet light">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs font-green-sharp"></i>
+                        <span class="caption-subject font-green-sharp bold uppercase">Table</span>
+                    </div>
+                    <div class="actions btn-set">
+                        <button class="btn green-haze btn-circle"><i class="fa fa-check"></i> Add</button>
+                        <div class="btn-group">
+                            <a class="btn yellow btn-circle" href="javascript:;" data-toggle="dropdown">
+                                <i class="fa fa-check-circle"></i> Edit <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu pull-right">
+                                <li>
+                                    <a href="javascript:;">
+                                        Duplicate </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        Delete </a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        Print </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                </div>
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#sample').DataTable({
+            "ajax":{
+                "url":"../angularjs/data/Product.json",
+                "dataSrc": ""
+            },
+            "columns": [
+                { "data": "ProductName" },
+                { "data": "CategoryName" },
+                { "data": "ProductColor" },
+                { "data": "ProductSize" },
+                { "data": "Price" }
+            ],
+            "language": {
+                "lengthMenu": "每页 _MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "search": "搜索:",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
+                }
+            },
+            pageLength: 5
+        });
+    } );
+
+</script>

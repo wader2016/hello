@@ -1,0 +1,217 @@
+<div class="container" ng-controller="OrderDetailController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet light" id="form_wizard_1">
+                <div class="portlet-title">
+                    <div class="caption">
+						<span class="caption-subject font-green-sharp uppercase page-title" style="font-weight: 500">
+						    <i class="fa fa-gift"></i> 订单 - <span class="step-title">订单详情</span>
+						</span>
+                    </div>
+                </div>
+                <div class="portlet-body form">
+                    <form action="javascript:;" class="form-horizontal" id="submit_form">
+                        <div class="form-wizard">
+                            <div class="form-body">
+                                <ul class="nav nav-pills nav-justified steps">
+                                    <li>
+                                        <a href="#tab1" data-toggle="tab" class="step">
+                                            <span class="number">1 </span>
+                                            <span class="desc"><i class="fa fa-check"></i> 待付款</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab2" data-toggle="tab" class="step">
+                                            <span class="number">2 </span>
+                                            <span class="desc"><i class="fa fa-check"></i>待发货 </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab3" data-toggle="tab" class="step active">
+                                            <span class="number">3 </span>
+                                            <span class="desc"><i class="fa fa-check"></i>待收货</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab4" data-toggle="tab" class="step">
+                                            <span class="number">4 </span>
+                                            <span class="desc"><i class="fa fa-check"></i>待评价</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div id="bar" class="progress progress-striped" role="progressbar">
+                                    <div class="progress-bar progress-bar-success">
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane" id="tab1">
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="head">
+                                                买家信息
+                                            </div>
+                                            <div class="content">
+                                                <div class="col-md-12 content-detail">
+                                                    收货地址: &nbsp;&nbsp;{{List.BuyerContactInfo}}&nbsp;&nbsp;{{List.ConsignneInfo}}
+                                                </div>
+                                                <div class="col-md-12 content-detail">
+                                                    买家留言:
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="head">
+                                                物流信息
+                                            </div>
+                                            <div class="content">
+                                                <div class="col-md-4 content-detail">
+                                                    物流信息: 元通快递
+                                                </div>
+                                                <div class="col-md-4 content-detail">
+                                                    运单编号: 20160121
+                                                </div>
+                                                <div class="col-md-4 content-detail">
+                                                    联系电话: {{List.ConsigneePhone}}/{{List.ConsigneeTel}}
+                                                    <a data-hover="dropdown" data-close-others="true" style="float: right;margin-right: 30px">详情<i class="fa fa-angle-double-down"></i></a>
+                                                    <ul class="dropdown-menu" style="width: 500px;background-color: #EFF3F8">
+                                                        <li class="status-done">
+                                                            <span class="status-date">2016-01-21 13:54:26</span>
+                                                            <span class="status-info">已签收！</span>
+                                                        </li>
+                                                        <li class="status-done">
+                                                            <span class="status-date">2016-01-21 02:10:21</span>
+                                                            <span class="status-info">快件到达北京中转部 正在分配派送员</span>
+                                                        </li>
+                                                        <li class="status-done">
+                                                            <span class="status-date">2016-01-20 21:22:35</span>
+                                                            <span class="status-info">快件到达南京中转部 下一站 北京 </span>
+                                                        </li>
+                                                        <li class="status-done">
+                                                            <span class="status-date">2016-01-20 12:30:25</span>
+                                                            <span class="status-info">您的包裹已经出库</span>
+                                                        </li>
+                                                        <li class="status-done">
+                                                            <span class="status-date">2016-01-20 12:25:56</span>
+                                                            <span class="status-info">您的订单正在准备备货</span>
+                                                        </li>
+                                                        <li class="status-done">
+                                                            <span class="status-date">2016-01-20 10:15:00</span>
+                                                            <span class="status-info">您的订单开始处理</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="head">
+                                                订单信息
+                                            </div>
+                                            <div class="content">
+                                                <div class="col-md-4 content-detail">
+                                                    订单编号: {{List.DocCode}}
+                                                </div>
+                                                <div class="col-md-4 content-detail">
+                                                    交易时间: {{List.OrderDate|date:'yyyy-MM-dd HH:mm:ss'}}
+                                                </div>
+                                                <div class="col-md-4 content-detail">
+                                                    卖家姓名: {{List.SellerContactInfo}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="content">
+                                                <div class="col-md-4 content-detail">
+                                                    联系电话: {{List.SellerContactInfo}}
+                                                </div>
+                                                <div class="col-md-4 content-detail">
+                                                    联系地址: {{List.ConsignneInfo}}
+                                                </div>
+                                                <div class="col-md-4 content-detail">
+                                                    仓库信息: {{List.StockName}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="content">
+                                                    <table class="table table-light table-hover">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>图片</th>
+                                                            <th>商品描述</th>
+                                                            <th>规格</th>
+                                                            <th class="hidden-xs">数量</th>
+                                                            <th class="hidden-xs">单价</th>
+                                                            <th align="right"> 总金额</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr ng-repeat="list in List.SalesOrderLines track by $index">
+                                                            <td class="goods-page-image">
+                                                                <img src="pictures/smallPic/{{list.ProductId}}.jpg" class="img-responsive" alt="Berry Lace Dress">
+                                                            </td>
+                                                            <td>
+                                                                {{list.ProductName1}}<br/>{{list.ProductName2}}
+                                                            </td>
+                                                            <td>
+                                                                颜色: {{list.ProductColor}}<br/>尺寸:{{list.ProductSize}}
+                                                            </td>
+                                                            <td class="goods-page-quantity">
+                                                                <div class="product-quantity">
+                                                                    <span>{{list.ProductQty}}</span>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <span>￥</span>{{list.SalesPrice|number:2}}
+                                                            </td>
+                                                            <td>
+                                                                <span>￥</span>{{list.SalesPrice * list.ProductQty|number:2}}
+                                                            </td>
+
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <hr/>
+                                                <div class="foot">
+                                                    <p>总价: <span>￥&nbsp;{{total|number:2}}</span></p>
+                                                    <p>运费: <span>￥&nbsp;0.00</span></p>
+                                                    <p>税费: <span>￥&nbsp;0.00</span></p>
+                                                    <p>实付金额: <span>￥&nbsp;{{total|number:2}}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr/>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="form-actions">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-md-offset-3 col-md-9">-->
+                                        <!--<a href="javascript:;" class="btn default button-previous">-->
+                                            <!--<i class="m-icon-swapleft"></i> Back </a>-->
+                                        <!--<a href="javascript:;" class="btn blue button-next">-->
+                                            <!--Continue <i class="m-icon-swapright m-icon-white"></i>-->
+                                        <!--</a>-->
+                                        <!--<a href="javascript:;" class="btn green button-submit">-->
+                                            <!--Submit <i class="m-icon-swapright m-icon-white"></i>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+//    jQuery(document).ready(function() {
+//        FormWizard.init(2);
+//    });
+</script>

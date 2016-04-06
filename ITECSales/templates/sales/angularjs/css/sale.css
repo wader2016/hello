@@ -1,0 +1,130 @@
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    background: #fff url("../../../../assets/global/plugins/uniform/images/sprite.png");
+    height: 19px;
+    width: 19px;
+    vertical-align: middle;
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    margin-right: 2px !important;
+    text-align: center;
+    margin-bottom: 3px;
+    margin-top: 1px;
+    background-position: 0 -260px;
+}
+
+input[type="checkbox"]:focus,
+input[type="checkbox"]:hover {
+    background-position: -38px -260px;
+    outline: none;
+}
+
+input[type="checkbox"]:checked {
+    background-position: -76px -260px;
+    outline: none;
+}
+
+.payMethod{
+    font: 16px Open Sans;
+}
+
+.order-font{
+    font: 16px "Open Sans", sans-serif;
+    margin-top: 10px;
+    border: 0;
+}
+
+.actions .btn-group .btn{
+    padding: 3px 9px;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.5;
+    border-width: 1px;
+}
+.well{
+    font-size: 14px;
+}
+
+.payMethod span{
+    width: 200px;
+    padding: 10px;
+    margin-right: 15px;
+
+}
+.order-content{
+    border-top: none;
+    margin-top: 20px;
+}
+
+.table tr td{
+    padding: 10px auto;
+}
+
+.body{
+    font: 16px "Open Sans", sans-serif;
+}
+
+/*.orderAddress{*/
+   /*padding-left: 30px;*/
+/*}*/
+/*.orderTel{*/
+    /*padding-left: 31px;*/
+/*}*/
+/*.orderName{*/
+    /*padding-left: 4px;*/
+/*}*/
+
+.checkout{
+    float: right;
+    margin-right: 10px;
+    overflow: hidden;
+}
+.order-title{
+    margin-top: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    color: #a7b3b9;
+}
+.light {
+    padding-bottom: 0;
+}
+
+.tab-pane .row .head{
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 15px;
+}
+.tab-pane .row .content{
+    font-size: 14px;
+    color: #9CA8B0;
+    font-family:'Open Sans',sans-serif;
+}
+
+.tab-pane .row .content .content-detail{
+    margin-top: 10px;
+}
+.row .foot{
+    float: right;
+    font-size: 14px;
+    margin-right: 40px
+}
+.row .foot span{
+    font-size: 15px;
+    color: red;
+    font-weight: 600
+}
+.content-detail ul li{
+    list-style-type: none;
+    display: block;
+    margin: 10px auto;
+}
+.status-done .status-date{
+    padding: 5px;
+}
+
+
+
+
+
+
