@@ -1,0 +1,472 @@
+<div class="container" ng-controller="OrderPrepareController">
+    <ul class="page-breadcrumb breadcrumb ">
+        <li>
+            <a href="#/orders/lightTable.html">销售</a><i class="fa fa-circle"></i>
+        </li>
+        <li class="active">
+            仓库备货
+        </li>
+    </ul>
+    <div class="row" >
+        <div class="search-list">
+            <div class="search-item">
+                <div class=" input-group search-product customer">
+                    <input type="text" class="input-test" placeholder="指定客户" ng-model="BuyerAccountName"/>
+                </div>
+                <div class="date-search">
+                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" style="width: 300px !important;">
+                        <div class="input-group-addon" style="background: #ffffff;border: none;color: #a9a9a9;">开始</div>
+                        <input type="text" class="form-control" placeholder="From" date-format1 ng-model="DocDateFrom" style="border: none">
+							<span class="input-group-btn">
+								<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+							</span>
+                    </div>
+                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" style="width: 300px !important;">
+                        <div class="input-group-addon" style="background: #ffffff;border: none;color: #a9a9a9;">结束</div>
+                        <input type="text" class="form-control" placeholder="To" ng-model="DocDateTo" style="border: none">
+						<span class="input-group-btn">
+							<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+						</span>
+                    </div>
+                </div>
+                <div class=" input-group search-product productId">
+                    <input type="text" class="input-test" placeholder="产品编号" ng-model="ProductCode"/>
+                </div>
+                <div class=" input-group search-product">
+                    <a class="btn btn-danger" ng-click="searchList(22)"><i class="fa fa-search"></i>搜索</a>
+                </div>
+                <div class=" input-group portlet-search">
+                    <a href="#" ng-if="isShowList==true" data-toggle="collapse" data-target="#collapseList" ng-click="ShowList()" >
+                        更多<i class="fa fa-angle-double-down"></i>
+                    </a>
+                    <a href="#" ng-if="isShowList==false" data-toggle="collapse" data-target="#collapseList" ng-click="ShowList()" >
+                        收起<i class="fa fa-angle-double-up"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="portlet light">
+            <div class="collapse" id="collapseList">
+                <div class="row-container">
+                    <div class="row row-list">
+                        <div class="row-head">
+                            <span class="label label-sm label-default label-mini">产品大类:</span>
+                        </div>
+                        <div class="row-product" id="tabList">
+                            <div class="test-button"><a href="#" ng-click="allList()">不限</a></div>
+                            <ul class="nav nav-tabs">
+                                <li role="presentation" class="active">
+                                    <a href="#tab_1_1_1" data-toggle="tab">山地车 <span class="caret"></span></a>
+                                </li>
+                                <li  role="presentation">
+                                    <a href="#tab_1_1_2" data-toggle="tab">公路车 <span class="caret"></span> </a>
+                                </li>
+                                <li  role="presentation">
+                                    <a href="#tab_1_1_3" data-toggle="tab">郊游车 <span class="caret"></span> </a>
+                                </li>
+                                <li  role="presentation">
+                                    <a href="#tab_1_1_4" data-toggle="tab">儿童车 <span class="caret"></span> </a>
+                                </li>
+                                <li  role="presentation">
+                                    <a href="#tab_1_1_5" data-toggle="tab">折叠车 <span class="caret"></span> </a>
+                                </li>
+                                <li  role="presentation">
+                                    <a href="#tab_1_1_6" data-toggle="tab">配件 <span class="caret"></span> </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1_1_1">
+                                    <ul>
+                                        <li ng-repeat="item in catelog[0].module">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.Name}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_1_1_2">
+                                    <ul>
+                                        <li ng-repeat="item in catelog[1].module">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.Name}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_1_1_3">
+                                    <ul>
+                                        <li ng-repeat="item in catelog[2].module">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.Name}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_1_1_4">
+                                    <ul>
+                                        <li ng-repeat="item in catelog[3].module">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.Name}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_1_1_5">
+                                    <ul>
+                                        <li ng-repeat="item in catelog[5].module">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.Name}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_1_1_6">
+                                    <ul>
+                                        <li ng-repeat="item in catelog[4].module">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.Name}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row row-list">
+                        <div class="row-head">
+                            <span class="label label-sm label-default label-mini">地区选择:</span>
+                        </div>
+                        <div class="row-body">
+                            <ul id="brand">
+                                <li><a href="#">不限</a></li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />上海
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />北京
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />天津
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />西北地区
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />华南地区
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="more-button">
+                                <a href="#more" ng-if="isShow==true" ng-click="packUpDown()" class="more-down" data-toggle="collapse">更多<i class="fa fa-angle-double-down"></i></a>
+                                <a href="#more" ng-if="isShow==false" ng-click="packUpDown()" class="more-up" data-toggle="collapse">收起<i class="fa fa-angle-double-up"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="collapse" id="more">
+                        <div class="container">
+                            <ul>
+                                <li><input type="checkbox" />广东 </li>
+                                <li><input type="checkbox" />浙江 </li>
+                                <li><input type="checkbox" />安徽 </li>
+                                <li><input type="checkbox" />河南 </li>
+                                <li><input type="checkbox" />河北 </li>
+                                <li><input type="checkbox" />湖南</li>
+                                <li><input type="checkbox" />湖北</li>
+                                <li><input type="checkbox"/>山东</li>
+                                <li><input type="checkbox" />山西</li>
+                                <li><input type="checkbox" />甘肃</li>
+                                <li><input type="checkbox" />吉林</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row row-list ">
+                        <div class="row-head">
+                            <span class="label label-sm label-default label-mini">仓库选择:</span>
+                        </div>
+                        <div class="row-body">
+                            <ul>
+                                <li><a href="#">不限</a></li>
+                                <li ng-repeat="item in StoreInfo track by $index">
+                                    <div class="inner store">
+                                        <input type="checkbox" ng-click="checkStore(item)"/>{{item.Abbr}}
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row row-list">
+                        <div class="row-head">
+                            <span class="label label-sm label-default label-mini">排序分组:</span>
+                        </div>
+                        <div class="row-body">
+                            <ul>
+                                <li><a href="#">不限</a></li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />订单
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox"/>交期
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />地区
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portlet light">
+            <div class="portlet-title">
+                <div class="actions">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#test1">备货</button>
+                    </div>
+                    <div class="modal fade" id="test1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                    <h4 class="modal-title">备货</h4>
+                                </div>
+                                <div class="modal-body" ng-show="List.length>0">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>订单预计交期</th>
+                                                    <th class="hidden-xs">品号/条码/描述</th>
+                                                    <th class="hidden-xs">规格</th>
+                                                    <th align="right"> 数量</th>
+                                                    <th>仓库</th>
+                                                    <th>状态</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr ng-repeat="item in List track by $index">
+                                                    <td>
+                                                        {{item.OrderDate|date:'yyyy-MM-dd'}}<br/>
+                                                        {{item.DocCode}}
+                                                    </td>
+                                                    <td class="hidden-xs">
+                                                        {{item.ProductName1}} / {{item.ProductId}} / {{item.ProductCode}}<br/>
+                                                        {{item.ProductName2}}
+                                                    </td>
+                                                    <td class="hidden-xs">
+                                                        颜色:{{item.ProductColor}}<br/>
+                                                        尺寸:{{item.ProductSize}}
+                                                    </td>
+                                                    <td>
+                                                        {{item.ProductQty}}件
+                                                    </td>
+                                                    <td>
+                                                        {{item.StockName}}
+                                                    </td>
+                                                    <td><span class="label label-sm label-success label-mini">
+														{{item.Status|convert}}</span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" ng-show="List.length>0">
+                                    <button type="button" class="btn blue" data-dismiss="modal" ng-click="stuckConfirm()">确定</button>
+                                    <button type="button" class="btn default" data-dismiss="modal">取消</button>
+                                </div>
+                                <div class="modal-body" ng-show="List.length <= 0">
+                                    <h3>请先选择需要备货的产品！</h3>
+                                </div>
+                                <div class="modal-footer" ng-show="List.length <= 0">
+                                    <button type="button" class="btn blue" data-dismiss="modal">确定</button>
+                                    <button type="button" class="btn default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-scrollable table-scrollable-borderless">
+                    <table class="table table-light table-hover">
+                        <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" ng-model="master" ng-click="checkAll(master)"/>
+                            </th>
+                            <th>订单预计交期</th>
+                            <th>买方</th>
+                            <th class="hidden-xs">品号/条码/描述</th>
+                            <th class="hidden-xs">规格</th>
+                            <th align="right"> 数量</th>
+                            <th>仓库</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in listCount track by $index">
+                            <td style="vertical-align: top;padding-left: 11px">
+                                <input type="checkbox" ng-checked="master" ng-model="checkBox" ng-change="CheckElement($index,checkBox)"/></td>
+                            <td style="vertical-align: top">
+                                {{item.OrderDate|date:'yyyy-MM-dd'}}<br/>
+                                {{item.DocCode}}
+                            </td>
+                            <td  style="vertical-align: top">
+                                {{item.BuyerAccountInfo}} <br/>
+                                联系人:{{item.BuyerContactInfo}}
+                            </td>
+                            <td>
+                                {{item.ProductName1}} / {{item.ProductId}} / {{item.ProductCode}}<br/>
+                                {{item.ProductName2}}
+                            </td>
+                            <td style="vertical-align: top">颜色:{{item.ProductColor}}<br>尺寸:{{item.ProductSize}}</td>
+                            <td style="vertical-align: top">{{item.ProductQty}}件 <br/></td>
+                            <td style="vertical-align: top">
+                                {{item.StockName}}
+                            </td>
+                            <td  style="vertical-align: top"><span class="label label-sm label-success label-mini">
+                                {{item.Status|convert}}</span>
+                            </td>
+                            <td  style="vertical-align: top">
+                                <a href="#" class="btn default btn-xs green-stripe" data-toggle="modal" data-target="#stuck" ng-click="test($index)">
+                                    {{item.Actions}} </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="modal fade" id="stuck" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                    <h4 class="modal-title" ng-if="list.Status==16">备货完成</h4>
+                                    <h4 class="modal-title" ng-if="list.Status==11">取消备货</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>订单预计交期</th>
+                                                    <th class="hidden-xs">品号/条码/描述</th>
+                                                    <th class="hidden-xs">规格</th>
+                                                    <th align="right"> 数量</th>
+													<th>仓库</th>
+                                                    <th>状态</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        {{list.OrderDate|date:'yyyy-MM-dd'}}<br/>
+                                                        {{list.DocCode}}
+                                                    </td>
+                                                    <td class="hidden-xs">
+                                                        {{list.ProductName1}} / {{list.ProductId}} / {{list.ProductCode}}<br/>
+                                                        {{list.ProductName2}}
+                                                    </td>
+                                                    <td class="hidden-xs">
+                                                        颜色:{{list.ProductColor}}<br>
+                                                        尺寸:{{list.ProductSize}}
+                                                    </td>
+                                                    <td >
+                                                        <span >{{list.ProductQty}}件</span>
+                                                    </td>
+													<td>
+                                                        {{list.StockName}}
+                                                    </td>
+                                                    <td ><span class="label label-sm label-success label-mini">
+                                                        {{list.Status|convert}}</span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn blue" data-dismiss="modal" ng-click="Confirm()">确定</button>
+                                    <button type="button" class="btn default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-8 page-pagination">
+                <ul class="pagination pull-right">
+                    <li ng-class="{true:'disabled'}[currentPage==1]">
+                        <a href="#" ng-click="prev()">&laquo;</a>
+                    </li>
+                    <li ng-repeat="page in pages" ng-class="{true:'active'}[currentPage==page]">
+                        <a href="#" ng-click="loadPage(page)">{{ page }}</a>
+                    </li>
+
+                    <li ng-class="{true:'disabled'}[currentPage==totalPage]">
+                        <a href="#" ng-click="next()">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- END SAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault();//阻止a链接的跳转行为
+        });
+        $('#brand a').click(function (e) {
+            e.preventDefault();
+        });
+        $('#tabList a').click(function (e) {
+            e.preventDefault();
+        });
+    })
+</script>
+<script>
+    $('.date-picker').datepicker();
+</script>
+

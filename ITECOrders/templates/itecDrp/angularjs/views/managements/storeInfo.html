@@ -1,0 +1,155 @@
+<div class="row" ng-controller="StoreInfoController">
+    <div class="col-md-3">
+        <div class="portlet light" style="height: 780px;background-color: #fff">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-microphone font-purple-plum"></i>
+                    <span class="caption-subject bold font-purple-plum uppercase">仓库列表</span>
+                </div>
+
+            </div>
+            <div class="portlet-body">
+                <table class="table table-hover table-light" style="width: 100%">
+                    <tbody>
+                    <tr ng-repeat="item in StoreInfo|filter:search track by $index" ng-click="loadStore($index)">
+                        <!--<td>{{item.StoreCode}}</td>-->
+                        <!--<td>{{item.StoreAbbr}}</td>-->
+                        <td>{{item.StoreName}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-9">
+        <div class="portlet light" style="height: 780px;background-color: #fff">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-microphone font-purple-plum"></i>
+                    <span class="caption-subject bold font-purple-plum uppercase">仓库信息</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+               <div class="row">
+                   <div class="col-md-12">
+                       <div class="scroller" style="height:600px" data-rail-visible="1" data-rail-color="blue" data-handle-color="red">
+                           <div class="row"  style="margin:30px auto">
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">仓库简称</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="storeAbbr" ng-model="storeAbbr" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">仓库名称</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="storeName" ng-model="storeName" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="row"  style="margin:30px auto">
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">所在地区</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="storeArea" ng-model="storeArea" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">地址</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="Address" ng-model="Address" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row"  style="margin:30px auto">
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">公司简称</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="companyAbbr" ng-model="companyAbbr" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">公司名称</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="companyName" ng-model="companyName" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="row"  style="margin:30px auto">
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">地址</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="Address" ng-model="Address" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">邮编</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="zipCode" ng-model="zipCode" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+
+                           <div class="row"  style="margin:30px auto">
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">联络人姓名</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="contactName" ng-model="contactName" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">联络人电话</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="contactTel" ng-model="contactTel" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="row"  style="margin:30px auto">
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3">联络人邮箱</label>
+                                       <div class="col-md-9">
+                                           <input type="text" name="contactEmail" ng-model="contactEmail" class="form-control"/>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="row"  style="margin:30px auto">
+                               <div class="col-md-6">
+                                   <div class="form-group">
+                                       <label class="control-label col-md-3"></label>
+                                       <div class="col-md-9">
+                                           <button type="button" class="btn green-haze">保存 </button>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>

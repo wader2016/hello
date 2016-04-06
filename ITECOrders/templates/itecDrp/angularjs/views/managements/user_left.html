@@ -1,0 +1,98 @@
+<div>
+    <!-- PORTLET MAIN -->
+    <div class="portlet light profile-sidebar-portlet">
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-userpic1">
+            <img src="{{headImg}}" class="img-circle" alt="" onload="AutoResizeImage(125,125,this)" style="margin: 0 25%">
+        </div>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+            <div class="profile-usertitle-name">
+                {{Nick}}
+            </div>
+            <div class="profile-usertitle-job">
+                经理
+            </div>
+        </div>
+        <!-- END SIDEBAR USER TITLE -->
+        <!-- SIDEBAR BUTTONS -->
+        <div class="profile-userbuttons">
+            <!--<button type="button" class="btn btn-circle green-haze btn-sm">Follow</button>-->
+            <!--<button type="button" class="btn btn-circle btn-danger btn-sm">Message</button>-->
+        </div>
+        <!-- END SIDEBAR BUTTONS -->
+        <!-- SIDEBAR MENU -->
+        <div class="profile-usermenu">
+            <ul class="nav">
+                <!--<li >-->
+                    <!--<a href="#managements/userProfile">-->
+                        <!--<i class="icon-home"></i>-->
+                        <!--概览 </a>-->
+                <!--</li>-->
+                <li>
+                    <a ui-sref=".accountSetting">
+                        <i class="icon-settings"></i>
+                        账户设置 </a>
+                </li>
+                <li>
+                    <a ui-sref=".companySetting">
+                        <i class="icon-settings"></i>
+                        企业设置 </a>
+                </li>
+                <li>
+                    <a ui-sref=".tasks">
+                        <i class="icon-check"></i>
+                        任务</a>
+                </li>
+                <li>
+                    <a ui-sref=".help">
+                        <i class="icon-info"></i>
+                        帮助 </a>
+                </li>
+            </ul>
+        </div>
+        <!-- END MENU -->
+    </div>
+    <!-- END PORTLET MAIN -->
+
+    <!-- PORTLET MAIN -->
+    <div class="portlet light">
+        <!-- STAT -->
+        <div class="row list-separated profile-stat">
+            <div class="col-md-4 col-sm-4 col-xs-6">
+                <div class="uppercase profile-stat-title">
+                    37
+                </div>
+                <div class="uppercase profile-stat-text">
+                    订单数量
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6">
+                <div class="uppercase profile-stat-title">
+                    51
+                </div>
+                <div class="uppercase profile-stat-text">
+                    产品总数
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6">
+                <div class="uppercase profile-stat-title">
+                    61
+                </div>
+                <div class="uppercase profile-stat-text">
+                    总金额
+                </div>
+            </div>
+        </div>
+        <!-- END STAT -->
+    </div>
+    <!-- END PORTLET MAIN -->
+</div>
+
+<script>
+    function AutoResizeImage(maxWidth,maxHeight,objImg){
+        objImg.height = maxHeight;
+        objImg.width = maxWidth;
+    }
+</script>

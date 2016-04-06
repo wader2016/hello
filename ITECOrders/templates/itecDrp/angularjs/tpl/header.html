@@ -1,0 +1,191 @@
+<!-- BEGIN HEADER TOP -->
+<div class="page-header-top">
+	<div class="container">
+		<!-- BEGIN LOGO -->
+		<div class="page-logo">
+			<a href="#/dashboard.html"><img src="assets/admin/layout3/img/logo-default.png" alt="logo" class="logo-default"></a>
+		</div>
+		<!-- END LOGO -->
+		<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+		<a href="javascript:;" class="menu-toggler"></a>
+		<!-- END RESPONSIVE MENU TOGGLER -->
+		<!-- BEGIN TOP NAVIGATION MENU -->
+		<div class="top-menu">
+			<ul class="nav navbar-nav pull-right" ng-if="authentication.isAuth==true">
+				<li class="dropdown dropdown-extended dropdown-dark dropdown-inbox" id="header_inbox_bar">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					<span class="circle">3</span>
+					<span class="corner"></span>
+					</a>
+				</li>
+				<!-- BEGIN USER LOGIN DROPDOWN -->
+				<li class="dropdown dropdown-user dropdown-dark">
+					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					<img alt="" class="img-circle" src="{{headImg}}" onload="AutoResizeImage(40,40,this)">
+					<span class="username username-hide-mobile">{{Nick}}</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-default">
+						<li>
+							<a href="#/managements/userProfile/accountSetting">
+							<i class="icon-user"></i> 用户管理</a>
+						</li>
+						<!--<li>-->
+							<!--<a href="#">-->
+							<!--<i class="icon-calendar"></i> My Calendar </a>-->
+						<!--</li>-->
+						<li>
+							<a href="#">
+							<i class="icon-envelope-open"></i> 产品管理
+							</a>
+						</li>
+						<!--<li>-->
+							<!--<a href="#/todo">-->
+							<!--<i class="icon-rocket"></i> My Tasks <span class="badge badge-success">-->
+							<!--7 </span>-->
+							<!--</a>-->
+						<!--</li>-->
+						<li class="divider">
+						</li>
+						<!--<li>-->
+							<!--<a href="#">-->
+							<!--<i class="icon-lock"></i>锁屏</a>-->
+						<!--</li>-->
+						<li>
+							<a  ng-click="logOut()">
+							<i class="icon-key"></i>退出</a>
+						</li>
+					</ul>
+				</li>
+				<!-- END USER LOGIN DROPDOWN -->
+			</ul>
+		</div>
+		<!-- END TOP NAVIGATION MENU -->
+	</div>
+</div>
+<!-- END HEADER TOP -->
+<!-- BEGIN HEADER MENU -->
+<div class="page-header-menu">
+	<div class="container">
+		<!-- BEGIN HEADER SEARCH BOX -->
+		<form class="search-form" action="extra_search.html" method="GET" ng-if="authentication.isAuth==true">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="搜索" name="query">
+				<span class="input-group-btn">
+				<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+				</span>
+			</div>
+		</form>
+		<div class="hor-menu">
+			<ul class="nav navbar-nav" ng-if="authentication.isAuth==true">
+				<!--<li class="active">-->
+					<!--<a href="#/dashboard.html">-->
+						<!--<i class="icon-bar-chart"></i>-->
+						<!--看板-->
+						<!--</a>-->
+				<!--</li>-->
+				<li class="menu-dropdown mega-menu-dropdown" ng-repeat="menu in Menu">
+					<a data-close-others="true"  href={{menu.href}} target="_blank"  class="dropdown-toggle">
+					{{menu.name}} <i ng-if="menu.dropDown==true" class="fa fa-angle-down"></i>
+					</a>
+					<ul class="dropdown-menu" style="min-width: 800px" ng-if="menu.Module.length==4">
+						<li>
+							<div class="mega-menu-content">
+								<div class="row">
+									<div class="col-md-3" ng-repeat="item in menu.Module">
+										<ul class="mega-menu-submenu">
+											<li>
+												<h3>{{item.block}}</h3>
+											</li>
+											<li ng-repeat="item1 in item.list">
+												<a href={{item1.url}} class="iconify">
+													<i class="fa fa-angle-right"></i>
+													{{item1.name}}
+													<span class="badge badge-roundless badge-warning">{{item1.property}}</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="dropdown-menu" style="min-width: 800px" ng-if="menu.Module.length==3">
+						<li>
+							<div class="mega-menu-content">
+								<div class="row">
+									<div class="col-md-4" ng-repeat="item in menu.Module">
+										<ul class="mega-menu-submenu">
+											<li>
+												<h3>{{item.block}}</h3>
+											</li>
+											<li ng-repeat="item1 in item.list">
+												<a href={{item1.url}} class="iconify">
+												<i class="fa fa-angle-right"></i>
+													{{item1.name}}
+													<span class="badge badge-roundless badge-warning">{{item1.property}}</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="dropdown-menu" style="min-width: 800px" ng-if="menu.Module.length==2">
+						<li>
+							<div class="mega-menu-content">
+								<div class="row">
+									<div class="col-md-6" ng-repeat="item in menu.Module">
+										<ul class="mega-menu-submenu">
+											<li>
+												<h3>{{item.block}}</h3>
+											</li>
+											<li ng-repeat="item1 in item.list">
+												<a href={{item1.url}} class="iconify">
+													<i class="fa fa-angle-right"></i>
+													{{item1.name}}
+													<span class="badge badge-roundless badge-warning">{{item1.property}}</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="dropdown-menu" style="min-width: 400px" ng-if="menu.Module.length==1">
+						<li>
+							<div class="mega-menu-content">
+								<div class="row">
+									<div class="col-md-12" ng-repeat="item in menu.Module">
+										<ul class="mega-menu-submenu">
+											<li>
+												<h3>{{item.block}}</h3>
+											</li>
+											<li ng-repeat="item1 in item.list">
+												<a href={{item1.url}} class="iconify">
+													<i class="fa fa-angle-right"></i>
+													{{item1.name}}
+													<span class="badge badge-roundless badge-warning">{{item1.property}}</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+		<!-- END MEGA MENU -->
+	</div>
+</div>
+<!-- END HEADER MENU -->
+<script type="text/javascript">
+	function AutoResizeImage(maxWidth,maxHeight,objImg){
+		objImg.height = maxHeight;
+		objImg.width = maxWidth;
+	}
+</script>

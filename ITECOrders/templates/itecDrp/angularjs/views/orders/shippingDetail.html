@@ -1,0 +1,73 @@
+<div class="container" ng-controller="ShippingDetailController">
+    <!-- BEGIN SIDEBAR & CONTENT -->
+    <div class="row margin-bottom-40">
+        <!-- BEGIN CONTENT -->
+        <div class="col-md-12 col-sm-12 contactList">
+              <div style="font-size: 15px">
+                  承运公司信息：{{shipCompanyInfo.Abbr}}&nbsp;&nbsp;&nbsp;&nbsp;地址：{{shipCompanyInfo.AddressLine1}}
+              </div>
+                <ul>
+                    <li ng-repeat="item in contactInfo track by $index">
+                       <input type="checkbox" ng-checked="info==$index" ng-click="checkContactInfo($index,item)"/>{{item.Name}} / {{item.Tel1}}
+                    </li>
+                </ul>
+        </div>
+        <!-- END CONTENT -->
+    </div>
+    <!-- END SIDEBAR & CONTENT -->
+
+    <div class="portlet light">
+        <div class="portlet-title">
+            <!--<div class="caption" ng-if="createOrder=='生成成功'">-->
+                <!--<i class="fa fa-cogs font-green-sharp"></i>-->
+                <!--<span class="caption-subject font-green-sharp bold uppercase">运单号:SC2015091102-007</span>-->
+            <!--</div>-->
+            <div class="actions">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" ng-click="crateDeliver()" data-ng-disabled="createOrder=='生成成功'" data-ng-model="createOrder">{{createOrder}}</button>
+                </div>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="table-scrollable table-scrollable-borderless">
+                <table class="table table-light table-hover">
+                    <thead>
+                    <tr>
+                        <th>订单预计交期</th>
+                        <th>买方</th>
+                        <th class="hidden-xs">品号/条码/描述</th>
+                        <th class="hidden-xs">规格</th>
+                        <th align="right"> 数量</th>
+                        <th>货运公司</th>
+                        <th>状态</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in items track by $index">
+                        <td style="vertical-align: top">
+                            <a href="#" >{{item.DocDate|date:'yyyy-MM-dd'}}</a><br/>
+                            订单:{{item.SalesOrderLineCode}}<br/>
+                        </td>
+                        <td class="hidden-xs" style="vertical-align: top">
+                            <a href="#">{{item.BuyerAccountAbbr}}</a><br/>
+                            联系人:{{item.BuyerContactName}}/{{item.Tel1}}&nbsp;{{item.City}}
+                        </td>
+                        <td class="hidden-xs">
+                            <a href="#">{{item.CatalogName}}</a><br>
+                            {{item.CategoryName}}:{{item.ProductName}}<br/>
+                        </td>
+                        <td style="vertical-align: top">颜色:{{item.ProductColor}}<br>尺寸:{{item.ProductSize}}</td>
+                        <td style="vertical-align: top">{{item.Qty}}件 <br/></td>
+                        <td style="vertical-align: top">
+                            {{item.CarrierAbbr}}
+                        </td>
+                        <td  style="vertical-align: top"><span class="label label-sm label-success label-mini">
+							{{item.SalesOrderLineState|convert}}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

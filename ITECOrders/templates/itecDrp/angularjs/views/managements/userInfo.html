@@ -1,0 +1,139 @@
+<div class="row" ng-controller="UserInfoController">
+    <div class="col-md-3 col-sm-3">
+        <div style="height: 800px;background-color: #fff">
+            <div class="portlet light profile-sidebar-portlet">
+                <div class="profile-userpic">
+                    <img src="../../../../../../itecDrpWeb/assets/admin/pages/media/profile/profile_user.jpg" class="img-circle" style="margin: 0 25%">
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        Mark
+                    </div>
+                    <div class="profile-usertitle-job">
+                        经理
+                    </div>
+                </div>
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li>
+                            <span>当前用户：mark</span>
+                        </li>
+                        <li>
+                            <span>电话：13851410501</span>
+                        </li>
+                        <li>
+                            <span>邮箱：1481234405@qq.com</span>
+                        </li>
+                        <li>
+                            <span>登陆时间：{{dateNow|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 col-sm-9">
+        <div class="portlet light product-scroll" data-spy="scroll" data-target="#table-scroll" style="height: 800px;background-color: #fff">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-microphone font-purple-plum"></i>
+                    <span class="caption-subject bold font-purple-plum uppercase">用户列表</span>
+                </div>
+                <div class="inputs">
+                    <div class="portlet-input input-inline input-small">
+                        <div class="input-icon right">
+                            <i class="icon-magnifier"></i>
+                            <input type="text" class="form-control" ng-model="search" placeholder="搜索...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <table class="table table-hover table-light" id="table-scroll" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>昵称</th>
+                        <th>用户姓名</th>
+                        <th>职位</th>
+                        <th>手机</th>
+                        <th>电话</th>
+                        <th>邮箱</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in userList|filter:search track by $index">
+                        <td>{{item.Nick}}</td>
+                        <td>{{item.Name}}</td>
+                        <td>{{item.Job}}</td>
+                        <td>{{item.Phone}}</td>
+                        <td>{{item.Tel}}</td>
+                        <td>{{item.Email}}</td>
+                        <td>
+                            <a href="#" data-toggle="modal" data-target="#updateUsers" ng-click="loadUsers($index)">修改</a>|
+                            <a href="#" ng-click="deleteUsers($index)">删除</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="modal fade" id="updateUsers" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                <h4 class="modal-title">用户信息修改</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">昵称</label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="userNick" ng-model="userNick" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">用户名</label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="userName" ng-model="userName" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">职位</label>
+                                        <div class="col-md-6">
+                                            <select class="form-control" data-ng-model="userJob" ng-options="item.Name as item.Name for item in GeneralTitle">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">电话</label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="userPhone" ng-model="userPhone" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">手机</label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="userTel" ng-model="userTel" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">邮箱</label>
+                                        <div class="col-md-6">
+                                            <input type="text" name="userEmail" ng-model="userEmail" class="form-control"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn blue" data-dismiss="modal" ng-click="updateUsers()">修改</button>
+                                <button type="button" class="btn default" data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <ng-pagination conf="paginationConf"></ng-pagination>
+            </div>
+        </div>
+    </div>
+</div>

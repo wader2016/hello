@@ -1,0 +1,392 @@
+<div class="container" ng-controller="DeliverySearchController">
+    <ul class="page-breadcrumb breadcrumb ">
+        <li>
+            <a href="#/orders/productShipping.html">物流</a><i class="fa fa-circle"></i>
+        </li>
+        <li class="active">
+            在途运单查询
+        </li>
+    </ul>
+    <div class="row">
+        <div class="search-list">
+            <div class="search-item">
+                <div class=" input-group search-product customer">
+                    <input type="text" class="input-test" placeholder="运单号查询" ng-model="DeliveryOrderNo"/>
+                </div>
+                <div class="date-search">
+                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" style="width: 300px !important;">
+                        <div class="input-group-addon" style="background: #ffffff;border: none;color: #a9a9a9;">开始</div>
+                        <input type="text" class="form-control" placeholder="From"  ng-model="DocDateFrom" style="border: none">
+							<span class="input-group-btn">
+								<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+							</span>
+                    </div>
+                    <div class="input-group input-medium date date-picker" data-date-format="yyyy-mm-dd" style="width: 300px !important;">
+                        <div class="input-group-addon" style="background: #ffffff;border: none;color: #a9a9a9;">结束</div>
+                        <input type="text" class="form-control" placeholder="To" ng-model="DocDateTo" style="border: none">
+						<span class="input-group-btn">
+							<button class="btn default" type="button"><i class="fa fa-calendar"></i></button>
+						</span>
+                    </div>
+                </div>
+                <div class=" input-group search-product productId">
+                    <input type="text" class="input-test" placeholder="产品编号" ng-model="ProductCode"/>
+                </div>
+                <div class=" input-group search-product">
+                    <a class="btn btn-danger" ng-click="searchList(3)"><i class="fa fa-search"></i>搜索</a>
+                </div>
+                <div class=" input-group portlet-search">
+                    <a href="#" ng-if="isShowList==true" data-toggle="collapse" data-target="#collapseList" ng-click="ShowList()" >
+                        更多<i class="fa fa-angle-double-down"></i>
+                    </a>
+                    <a href="#" ng-if="isShowList==false" data-toggle="collapse" data-target="#collapseList" ng-click="ShowList()" >
+                        收起<i class="fa fa-angle-double-up"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="portlet light">
+            <div class="collapse" id="collapseList">
+                <div class="row-container">
+                    <div class="row row-list">
+                        <div class="row-head">
+                            <span class="label label-sm label-default label-mini">产品大类:</span>
+                        </div>
+                        <div class="row-product" id="tabList">
+                            <div class="test-button"><a href="#" ng-click="allList()">不限</a></div>
+                            <ul class="nav nav-tabs">
+                                <li role="presentation" class="active">
+                                    <a href="#tab_1_1_1" data-toggle="tab">山地车 <span class="caret"></span></a>
+                                </li>
+                                <li  role="presentation">
+                                    <a href="#tab_1_1_2" data-toggle="tab">公路车 <span class="caret"></span> </a>
+                                </li>
+                                <li  role="presentation">
+                                    <a href="#tab_1_1_3" data-toggle="tab">郊游车 <span class="caret"></span> </a>
+                                </li>
+                                <li  role="presentation">
+                                    <a href="#tab_1_1_4" data-toggle="tab">儿童车 <span class="caret"></span> </a>
+                                </li>
+                                <li  role="presentation">
+                                    <a href="#tab_1_1_5" data-toggle="tab">折叠车 <span class="caret"></span> </a>
+                                </li>
+                                <li  role="presentation">
+                                    <a href="#tab_1_1_6" data-toggle="tab">配件 <span class="caret"></span> </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1_1_1">
+                                    <ul>
+                                        <li ng-repeat="item in category|filter:{'CategoryName':'山地车'}">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.CatalogName}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_1_1_2">
+                                    <ul>
+                                        <li ng-repeat="item in category|filter:{'CategoryName':'公路车'}">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.CatalogName}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_1_1_3">
+                                    <ul>
+                                        <li ng-repeat="item in category|filter:{'CategoryName':'郊游车'}">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.CatalogName}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_1_1_4">
+                                    <ul>
+                                        <li ng-repeat="item in category|filter:{'CategoryName':'青少年&儿童车'}">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.CatalogName}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_1_1_5">
+                                    <ul>
+                                        <li ng-repeat="item in category|filter:{'CategoryName':'折叠车'}">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.CatalogName}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="tab_1_1_6">
+                                    <ul>
+                                        <li ng-repeat="item in category|filter:{'CategoryName':'配件'}">
+                                            <div class="check-item">
+														<span>
+															<input type="checkbox" ng-click="checkItems(item)"/>{{item.CatalogName}}
+														</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row row-list">
+                        <div class="row-head">
+                            <span class="label label-sm label-default label-mini">地区选择:</span>
+                        </div>
+                        <div class="row-body">
+                            <ul id="brand">
+                                <li><a href="#">不限</a></li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />上海
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />北京
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />天津
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />西北地区
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />华南地区
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="more-button">
+                                <a href="#more" ng-if="isShow==true" ng-click="packUpDown()" class="more-down" data-toggle="collapse">更多<i class="fa fa-angle-double-down"></i></a>
+                                <a href="#more" ng-if="isShow==false" ng-click="packUpDown()" class="more-up" data-toggle="collapse">收起<i class="fa fa-angle-double-up"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="collapse" id="more">
+                        <div class="container">
+                            <ul>
+                                <li><input type="checkbox" />广东 </li>
+                                <li><input type="checkbox" />浙江 </li>
+                                <li><input type="checkbox" />安徽 </li>
+                                <li><input type="checkbox" />河南 </li>
+                                <li><input type="checkbox" />河北 </li>
+                                <li><input type="checkbox" />湖南</li>
+                                <li><input type="checkbox" />湖北</li>
+                                <li><input type="checkbox"/>山东</li>
+                                <li><input type="checkbox" />山西</li>
+                                <li><input type="checkbox" />甘肃</li>
+                                <li><input type="checkbox" />吉林</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row row-list ">
+                        <div class="row-head">
+                            <span class="label label-sm label-default label-mini">仓库选择:</span>
+                        </div>
+                        <div class="row-body">
+                            <ul>
+                                <li><a href="#">不限</a></li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />华东仓库
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox"/>华北仓库
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />华南仓库
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox"/>西南仓库
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />西北仓库
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row row-list">
+                        <div class="row-head">
+                            <span class="label label-sm label-default label-mini">排序分组:</span>
+                        </div>
+                        <div class="row-body">
+                            <ul>
+                                <li><a href="#">不限</a></li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />订单
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox"/>交期
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inner">
+                                        <input type="checkbox" />地区
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                </div>
+            </div>
+        </div>
+        <div class="portlet light" ng-repeat="item in sellName track by $index">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-cogs font-green-sharp"></i>
+                    <span class="caption-subject font-green-sharp bold uppercase">运单号:{{item.DeliveryOrderId}}</span>
+                    <span class="caption-helper"> &nbsp;&nbsp;承运人：{{item.CarrierContactName}}</span>
+                    <span class="caption-helper">  /  联系电话：{{item.CarrierContactTel1}} / 送货地址：{{item.AddressLine1}}</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-scrollable table-scrollable-borderless">
+                    <table class="table table-light table-hover">
+                        <thead>
+                        <tr>
+                            <th>订单预计交期</th>
+                            <th>买方</th>
+                            <th class="hidden-xs">品号/条码/描述</th>
+                            <th class="hidden-xs">规格</th>
+                            <th align="right"> 数量</th>
+                            <th>货运公司</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in items1|filter:{'CarrierContactName':item.CarrierContactName} track by $index">
+                            <td style="vertical-align: top">
+                                <a href="#" >{{item.DocDate|date:'yyyy-MM-dd'}}</a><br/>
+                                订单:{{item.SalesOrderLineCode}}<br/>
+                            </td>
+                            <td class="hidden-xs" style="vertical-align: top">
+                                联系人:{{item.BuyerContactName}}/{{item.BuyerContactTel}}&nbsp;{{item.City}}
+                            </td>
+                            <td class="hidden-xs">
+                                <a href="#">{{item.CatalogName}}</a><br>
+                                {{item.CategoryName}}:{{item.ProductName}}<br/>
+                            </td>
+                            <td style="vertical-align: top">颜色:{{item.ProductColor}}<br>尺寸:{{item.ProductSize}}</td>
+                            <td style="vertical-align: top">{{item.Qty}}件 <br/></td>
+                            <td style="vertical-align: top">
+                                {{item.CarrierAccountAbbr}}
+                            </td>
+                            <td  style="vertical-align: top"><span class="label label-sm label-success label-mini">
+								{{item.DeliveryOrderLineState|DeliveryConvert}}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="modal fade" id="stuck" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                                    <h4 class="modal-title">产品卸货</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>订单预计交期</th>
+                                                    <th class="hidden-xs">品号/条码/描述</th>
+                                                    <th class="hidden-xs">规格</th>
+                                                    <th align="right"> 数量</th>
+                                                    <th>状态</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td><a href="#">{{list.DocDate|date:'yyyy-MM-dd'}}</a></td>
+                                                    <td class="hidden-xs">
+                                                        <a href="#">{{list.CatalogName}}</a><br>
+                                                        {{list.CategoryName}}:{{list.ProductName}}
+                                                    </td>
+                                                    <td class="hidden-xs">
+                                                        颜色:{{list.ProductColor}}<br>
+                                                        尺寸:{{list.ProductSize}}
+                                                    </td>
+                                                    <td >
+                                                        <span >{{list.Qty}}件</span>
+                                                    </td>
+                                                    <td ><span class="label label-sm label-success label-mini">
+														{{list.DeliveryOrderLineState|DeliveryConvert}}</span>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn blue" data-dismiss="modal" ng-click="Confirm()">确定</button>
+                                    <button type="button" class="btn default" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault();//阻止a链接的跳转行为
+        });
+        $('#brand a').click(function (e) {
+            e.preventDefault();
+        });
+        $('#tabList a').click(function (e) {
+            e.preventDefault();
+        });
+    })
+</script>
+<script>
+    $('.date-picker').datepicker();
+</script>

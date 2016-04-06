@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Brian",
+    "earning": 345,
+    "cases":45,
+    "closed":124,
+    "rate":"80%",
+    "picture":"avatar4.jpg"
+  },
+  {
+    "name": "Nick",
+    "earning": 560,
+    "cases":12,
+    "closed":24,
+    "rate":"67%",
+    "picture":"avatar5.jpg"
+  }, {
+  "name": "Mark",
+  "earning": 1345,
+  "cases":450,
+  "closed":46,
+  "rate":"98%",
+  "picture":"avatar6.jpg"
+},
+  {
+    "name": "Eason",
+    "earning": 645,
+    "cases":50,
+    "closed":89,
+    "rate":"58%",
+    "picture":"avatar7.jpg"
+  }
+]

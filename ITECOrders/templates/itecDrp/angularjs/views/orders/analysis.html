@@ -1,0 +1,138 @@
+<div class="container" ng-controller="AnalyseController">
+    <ul class="page-breadcrumb breadcrumb">
+        <li>
+            <a href="#/orders/lightTable.html">销售</a><i class="fa fa-circle"></i>
+        </li>
+        <li>
+            <a href="#/orders/analysis.html">销售战情看板</a>
+            <i class="fa fa-circle"></i>
+        </li>
+        <li class="active">
+            产品销售分析看板
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
+            <a class="dashboard-stat dashboard-stat-light blue-madison" href="javascript:;">
+                <div class="visual">
+                    <i class="fa fa-briefcase fa-icon-medium"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        $168,492.54
+                    </div>
+                    <div class="desc">
+                        Lifetime Sales
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <a class="dashboard-stat dashboard-stat-light red-intense" href="javascript:;">
+                <div class="visual">
+                    <i class="fa fa-shopping-cart"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        1,127,390
+                    </div>
+                    <div class="desc">
+                        Total Orders
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <a class="dashboard-stat dashboard-stat-light green-haze" href="javascript:;">
+                <div class="visual">
+                    <i class="fa fa-group fa-icon-medium"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        $670.54
+                    </div>
+                    <div class="desc">
+                        Average Orders
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Begin: life time stats -->
+            <div class="portlet light">
+                <div class="portlet-title tabbable-line">
+                    <div class="caption">
+                        <i class="icon-share font-red-sunglo"></i>
+                        <span class="caption-subject font-red-sunglo bold uppercase">Revenue</span>
+                        <span class="caption-helper">weekly stats...</span>
+                    </div>
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li>
+                            <a href="#portlet_tab2" data-toggle="tab" id="statistics_amounts_tab">
+                                Amounts </a>
+                        </li>
+                        <li class="active">
+                            <a href="#portlet_tab1" data-toggle="tab">
+                                Orders </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="portlet-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="portlet_tab1">
+                            <div id="statistics_1" class="chart">
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="portlet_tab2">
+                            <div id="statistics_2" class="chart">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="margin-top-20 no-margin no-border">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+										<span class="label label-success uppercase">
+										Revenue: </span>
+                                <h3>$1,234,112.20</h3>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+										<span class="label label-info uppercase">
+										Tax: </span>
+                                <h3>$134,90.10</h3>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+										<span class="label label-danger uppercase">
+										Shipment: </span>
+                                <h3>$1,134,90.10</h3>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-6 text-stat">
+										<span class="label label-warning uppercase">
+										Orders: </span>
+                                <h3>235090</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End: life time stats -->
+        </div>
+    </div>
+
+</div>
+
+<script>
+    jQuery(document).ready(function() {
+        EcommerceIndex.init();
+    });
+</script>
+<script>
+    $(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault();//阻止a链接的跳转行为
+        });
+
+    })
+</script>

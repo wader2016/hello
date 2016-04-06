@@ -1,0 +1,110 @@
+
+<div class="col-md-12 col-sm-12" ng-controller="ProductDetailController">
+    <div class="product-page" style="font-family: 'Open Sans', sans-serif">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="product-main-image">
+                    <img src="pictures/normalPic/{{getItem.ProductId}}.jpg" alt="Cool green dress with red bell" class="img-responsive" data-BigImgsrc="{{getItem.picture}}">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6" >
+                <h1 style="color: #E84D1C;">
+                    {{getItem.CategoryName}}/{{getItem.ProductName}}<br/>
+                    <span><h3>{{getItem.Description}}</h3></span>
+                </h1>
+
+                <div class="price-availability-block clearfix">
+                    <div class="price">
+                        <strong><span>￥</span>{{getItem.Price|number:2}}</strong>
+                    </div>
+                    <span style="float: right;font-size: 10px;margin-right: 10px;margin-top: 20px">货号：{{getItem.ProductId}}</span>
+                </div>
+                <div class="description">
+                    <label class="control-label">{{getItem.Description}}</label>
+                </div>
+                <div class="product-page-options">
+                    <div class="pull-left" >
+                        <label class="control-label" style="color: #000">尺寸:</label>
+                        <label class="control-label" style="color: #000">{{getItem.ProductSize}}</label>
+                    </div>
+                    <div class="pull-left">
+                        <label class="control-label" style="color: #000">颜色:</label>
+                        <label class="control-label" style="color: #000">{{getItem.ProductColor}}</label>
+                    </div>
+                    <div class="pull-left">
+                        <label class="control-label" style="color: #000">仓库:</label>
+                        <label class="control-label" style="color: #000">{{getItem.Store}}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-page-content">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li role="presentation" class="active"><a href="#Description" aria-controls="Description" aria-expanded="true" data-toggle="tab">详细参数</a></li>
+                    <li role="presentation"><a href="#Information" aria-controls="Information" aria-expanded="true" data-toggle="tab">商品详情</a></li>
+                    <li role="presentation"><a href="#Reviews" aria-controls="Reviews" aria-expanded="true" data-toggle="tab">商品评价</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="Description">
+                    <table class="table">
+                        <tr>
+                            <th colspan="3">详细参数</th>
+                        </tr>
+                        <tr ng-repeat="item in descriptionKey">
+                            <td class="">{{item.Key}}:</td>
+                            <td>
+                                <input type="text" class="product-input" ng-model="item.Value" style="border: none;width: 100%" ng-blur="updateProductDetail(item.Value)"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Information">
+
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="Reviews">
+                    <div class="review-item clearfix" ng-repeat="item in productReview track by $index">
+                        <div class="review-item-submitted">
+                            <strong>{{item.name}}</strong>
+                            <em>{{item.date|date:'yyyy-MM-dd HH:mm:ss'}}</em>
+                            <div class="rateit" data-rateit-value="5" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+                        </div>
+                        <div class="review-item-content">
+                            <p style="text-indent: 2em">{{item.description}}</p>
+                        </div>
+                    </div>
+                    <!-- BEGIN FORM-->
+                    <form class="reviews-form" role="form">
+                        <h2>评价</h2>
+                        <div class="form-group">
+                            <label>姓名 <span class="require">*</span></label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>电话</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="review">评价 <span class="require">*</span></label>
+                            <textarea class="form-control" rows="8" id="review"></textarea>
+                        </div>
+                        <div class="padding-top-20">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </form>
+                    <!-- END FORM-->
+                </div>
+            </div>
+
+            <!--<div class="sticker sticker-sale"></div>-->
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault();//阻止a链接的跳转行为
+        })
+    })
+</script>
+

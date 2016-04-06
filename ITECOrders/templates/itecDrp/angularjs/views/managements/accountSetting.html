@@ -1,0 +1,481 @@
+<div ng-controller="AccountSettingController">
+    <div class="profile-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="portlet light" id="myTab">
+                    <div class="portlet-title tabbable-line">
+                        <div class="caption caption-md">
+                            <i class="icon-globe theme-font hide"></i>
+                            <span class="caption-subject font-blue-madison bold uppercase">账户设置</span>
+                        </div>
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab_1_1" data-toggle="tab">个人信息</a>
+                            </li>
+                            <li>
+                                <a href="#tab_1_2" data-toggle="tab">收货地址</a>
+                            </li>
+                            <li>
+                                <a href="#tab_1_3" data-toggle="tab">支付与发票</a>
+                            </li>
+                            <li>
+                                <a href="#tab_1_4" data-toggle="tab">首选商场</a>
+                            </li>
+                            <li>
+                                <a href="#tab_1_5" data-toggle="tab">市场信息</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="tab-content" style="background: #ffffff">
+                            <div class="tab-pane active" id="tab_1_1">
+                                <div class="portlet light bordered form-fit">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-green-haze bold uppercase">个人信息</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <form class="form-horizontal"  name="save_form" ng-submit="saveForm()">
+                                            <div class="form-group" style="margin-top: 15px">
+                                                <label class="control-label col-md-3">真实姓名</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" name="realName" ng-model="realName" class="form-control" required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">手机</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" name="Tel" ng-model="Tel" required maxlength="11"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">登录邮箱</label>
+                                                <div class="col-md-6">
+                                                    <input type="email" class="form-control" ng-model="loginEmail" name="loginEmail" required readonly/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">昵称</label>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" ng-model="Nick"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3"></label>
+                                                <div  class="col-md-6">
+                                                    <button type="submit" class="btn green-haze" data-ng-disabled="save_form.$invalid">
+                                                        保存 </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="portlet light bordered form-fit">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-green-haze bold uppercase">密码修改</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <form class="form-horizontal" name="passwordForm" ng-submit="updatePwd()">
+                                            <div class="form-group" style="margin-top: 15px">
+                                                <label class="control-label col-md-3">当前密码</label>
+                                                <div class="col-md-6">
+                                                    <input type="password" class="form-control" ng-model="password" required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">新密码</label>
+                                                <div class="col-md-6">
+                                                    <input type="password" class="form-control" ng-model="newPassword" required minlength="6"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">确认新密码</label>
+                                                <div class="col-md-6">
+                                                    <input type="password" class="form-control" ng-model="confirmPassword" required minlength="6"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3"></label>
+                                                <div  class="col-md-6">
+                                                    <button  class="btn green-haze">
+                                                        保存 </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="portlet light bordered form-fit">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-green-haze bold uppercase">上传头像</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <form role="form" class="form-horizontal">
+                                            <div class="form-group" style="margin-top: 15px">
+                                                <label class="control-label col-md-3"></label>
+                                                <div class="col-md-6">
+                                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt=""/>
+                                                        </div>
+                                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+                                                        </div>
+                                                        <div>
+                                                            <span class="btn default btn-file">
+                                                            <span class="fileinput-new">选择文件 </span>
+                                                            <span class="fileinput-exists">更换 </span>
+                                                             <input id="imageSource" type="file" name="..." title="Search for a file to add"  >
+                                                            </span>
+                                                            <a href="#" class="btn default fileinput-exists" data-dismiss="fileinput">
+                                                                清除 </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3"></label>
+                                                <div class="col-md-6">
+                                                    <div class="clearfix margin-top-10">
+                                                        <span class="label label-danger">注意! &nbsp;</span>
+                                                        <span>仅支持 Firefox, Chrome, Opera, Safari and Internet Explorer 10 等浏览器 </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3"></label>
+                                                <div  class="col-md-6">
+                                                    <a href="#" class="btn green-haze" ng-click="getImg()">
+                                                        保存 </a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                           </div>
+                            <div class="tab-pane" id="tab_1_2">
+                                <form class="form-horizontal form-row-seperated" name="addressForm" ng-submit="saveInfo()">
+                                    <h5 style="margin-bottom: 20px" ><span style="color: red">新增收货地址</span>&nbsp;&nbsp;&nbsp;<span>电话号码、手机号选填一项，其余均为必填项</span></h5>
+                                    <h5 style="margin-bottom: 20px" ng-if="showList==true"><span style="color: red">修改收货地址</span>&nbsp;&nbsp;&nbsp;<span>电话号码、手机号选填一项，其余均为必填项</span></h5>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">所在地区</label>
+                                        <div class="col-md-10">
+                                            <div class="col-md-3">
+                                                <select style="margin-left: -5px" class="form-control" ng-options="item as item.ProName for item in getProvince" data-ng-model="selProvince" data-ng-change="getProData(selProvince)" required>
+                                                    <option value="">--请选择省份--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select class="form-control" ng-options="item as item.CityName for item in getCity" data-ng-model="selCity" data-ng-change="getCityData(selCity)" required>
+                                                    <option value="">--请选择城市--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select class="form-control" ng-options="item as item.DisName for item in getStreet" data-ng-model="selStreet" data-ng-change="getStreetData(selStreet)" required>
+                                                    <option value="">--请选择区/县--</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <select class="form-control">
+                                                    <option value="">--请选择街道--</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="from-group" >
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">详细地址</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <input type="text" class="form-control" placeholder="请填写详细的地址" ng-model="detailAddress" required/>
+                                        </div>
+                                    </div>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">邮政编码</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <input type="text" class="form-control" placeholder="邮政编码" ng-model="codeNum" required/>
+                                        </div>
+                                    </div>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">收货人</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <input type="text" class="form-control"  placeholder="收货人姓名，不超过20个字" ng-model="acceptName" required/>
+                                        </div>
+                                    </div>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">手机号码</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <input type="text" class="form-control" placeholder="请输入手机号码" ng-model="phoneNum" required maxlength="11"/>
+                                        </div>
+                                    </div>
+                                    <div class="from-group">
+                                        <label class="control-label col-md-2" style="margin-bottom: 15px">电话号码</label>
+                                        <div class="col-md-10" style="margin-bottom: 15px">
+                                            <input type="text" class="form-control" placeholder="请输入电话号码" ng-model="telNumber" required/>
+                                        </div>
+                                    </div>
+                                    <div class="margin-top-20">
+                                        <div class="col-md-offset-2" style="padding-left: 9px">
+                                            <label for="defaultSet"><input type="checkbox" id="defaultSet" ng-model="defaultCheck" ng-checked="isChecked(defaultCheck)"/>设置为默认地址</label>
+
+                                        </div>
+                                        <div class="col-md-offset-2" style="padding-left: 13px;margin-top: 10px">
+                                            <button class="btn green-haze">
+                                                保存 </button>
+                                        </div>
+                                    </div>
+                                    <div class="from-group" style="margin-top: 20px" >
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>收货人</th>
+                                                <th>所在地区</th>
+                                                <th>详细地址</th>
+                                                <th>邮编</th>
+                                                <th>电话/手机</th>
+                                                <th>操作</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="item in AddressInfo track by $index" ng-mouseenter="showDefault($index)" ng-mouseleave="hideDefault($index)">
+                                                <td>{{item.Name}}</td>
+                                                <td>{{item.addDetail}}</td>
+                                                <td>{{item.AddressLine2}}</td>
+                                                <td>{{item.ZipCode}}</td>
+                                                <td>{{item.TelAndPhone.Tel}} <br/>
+                                                    {{item.TelAndPhone.Phone}}
+                                                </td>
+                                                <td><a href="#" ng-click="updateInfo($index)">修改</a>|<a href="#" data-toggle="modal" data-target="#myModal" ng-click="viewModal($index)">删除</a>
+                                                    <div class="modal " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="top:45%;margin-top:-80px">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">提示</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h3>确定要删除么?</h3>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteInfo()">确定</button>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td style="width: 100px">
+                                                    <div>
+                                                        <button ng-show="item.defaultSet == true" type="button" class="btn btn-default btn-xs"> 默认地址</button>
+                                                        <button ng-show="item.showSet==true" type="button" class="btn btn-default btn-xs" ng-click="changeAddress($index)"> 设为默认</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane" id="tab_1_3">
+                                <div class="portlet light bordered form-fit">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-green-haze bold uppercase">支付信息</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form class="form-horizontal" name="bankForm" ng-submit="bankInfo()">
+                                            <div class="form-body">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">银行卡号</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" ng-model="CardNumber" name="CardNumber" placeholder="请输入银行卡号" class="form-control" maxlength="19"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">持卡人姓名</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" ng-model="CardName" name="CardName" placeholder="请输入持卡人姓名" class="form-control"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">身份证号</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" ng-model="IdCard" name="IdCard" placeholder="请输入身份证号" class="form-control" maxlength="18"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">手机号</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" ng-model="CardPhone" name="CardPhone" class="form-control" placeholder="请输入手机号码" maxlength="11">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-md-offset-3">
+                                                    <button type="submit" class="btn green-haze">保存</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- END FORM-->
+                                    </div>
+                                </div>
+                                <div class="portlet light bordered form-fit">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span class="caption-subject font-green-haze bold uppercase">发票信息</span>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <!-- BEGIN FORM-->
+                                        <form class="form-horizontal" name="invoiceForm" ng-submit="invoiceInfo()">
+                                            <div class="form-body">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">名称</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" ng-model="invoiceName" name="invoiceName" placeholder="请输入名称" class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">纳税人识别号</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" ng-model="invoiceNumber" name="invoiceNumber" placeholder="请输入纳税人识别号" class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">地址、电话</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" ng-model="invoiceAddressAndPhone" name="invoiceAddressAndPhone" placeholder="请输入地址、电话,用/分开" class="form-control" required/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">开户行及账号</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" ng-model="bankLine" name="bankLine" class="form-control" placeholder="请输入开户银行及账号" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-6 col-md-offset-3">
+                                                        <button type="submit" class="btn green-haze">保存</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- END FORM-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_1_4">
+                                <div class="portlet light  form-fit">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <span>首选商场</span>&nbsp;&nbsp;&nbsp;
+                                            <select class="form-group" style="width: 200px;font-size: 14px" ng-options="item.StoreName for item in mapAddress" data-ng-model="mapAdd" data-ng-change="getMap(mapAdd)">
+                                            </select>
+                                            <span style="margin-left: 5px">
+                                                <button type="button" class="btn btn-default btn-xs" ng-click="saveAddress()">保存</button>
+                                            </span>
+                                            <div style="margin-left: 90px">
+                                                <span style="font-size: 14px">地址：{{mapAdd.AddressLine}}&nbsp;&nbsp;&nbsp;电话：{{mapAdd.ContactTel}}&nbsp;&nbsp;&nbsp;营业时间：{{mapAdd.shopHours}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body form">
+                                        <form class="form-horizontal">
+                                            <div class="form-body">
+                                                <div id="container1" style="width: 100%;height:500px"></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tab_1_5">
+                                <form role="form" name="salesInfo" ng-submit="saveSaleInfo()">
+                                    <div class="form-group">
+                                        <label class="control-label">生日</label>
+                                        <div class="input-icon" >
+                                            <i class="fa fa-calendar"></i>
+                                            <input type="text" data-date-format="yyyy-mm-dd" class="form-control todo-taskbody-due" placeholder="出生日期" ng-model="birthDay">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">车队/俱乐部</label>
+                                        <input type="text" class="form-control" ng-model="bikeClub" placeholder="请输入车队/俱乐部名称"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">  购买目的</label>
+                                        <div class="well">
+                                            <div ng-repeat="item in purchase">
+                                                <input type="checkbox" id="{{item.for}}" ng-checked="checkId==$index" ng-click="checkPurchase(item,$index)"/><label for="{{item.for}}">{{item.intention}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">从什么地方获知UCC品牌</label>
+                                        <div class="well">
+                                            <div ng-repeat="item in SalesInfoChannel">
+                                                <input type="checkbox" id="{{item.for}}" ng-checked="checkSalesId==$index" ng-click="checkChannel(item,$index)"/> <label for="{{item.for}}">{{item.channel}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="margiv-top-10">
+                                        <button type="submit" class="btn green-haze">
+                                            保存 </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+        });
+    })
+</script>
+
+<script>
+    jQuery(document).ready(function() {
+        Todo.init();
+    });
+</script>
+<script type="text/javascript">
+    function mapFun(text){
+        var map = new BMap.Map("container1");
+        map.addControl(new BMap.NavigationControl());
+        map.addControl(new BMap.ScaleControl());
+        map.addControl(new BMap.OverviewMapControl());
+        map.addControl(new BMap.MapTypeControl());
+        var point = new BMap.Point(118.792, 32.049);
+        var myGeo = new BMap.Geocoder();
+        myGeo.getPoint(text.AddressLine, function(point){
+            if (point) {
+                map.centerAndZoom(point, 16);
+                map.addOverlay(new BMap.Marker(point));
+                var infoWindow = new BMap.InfoWindow("地址:"+text.AddressLine, {title:text.StoreName});
+                infoWindow.disableCloseOnClick();
+                map.openInfoWindow(infoWindow, map.getCenter());
+            }
+        }, "中国");
+
+        map.enableScrollWheelZoom(true);
+
+
+    }
+</script>
+
+<script type="text/javascript">
+    function AutoResizeImage(maxWidth,maxHeight,objImg){
+        objImg.height = maxHeight;
+        objImg.width = maxWidth;
+    }
+
+</script>

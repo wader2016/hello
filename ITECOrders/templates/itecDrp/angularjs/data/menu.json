@@ -1,0 +1,367 @@
+[
+  {
+    "name": "销售",
+    "href":"#",
+    "dropDown":true,
+    "Module": [
+      {
+        "Id": 6,
+        "block": "订单处理",
+        "list": [
+          {
+            "Id": 10,
+            "name": "安排仓库备货",
+            "url": "#/orders/lightTable.html",
+            "property": "业务安排"
+          },
+          {
+            "Id": 11,
+            "name": "仓库备货",
+            "url": "#/orders/orderPrepare.html",
+            "property": "仓库捡货，自动产生销货单"
+          },
+          {
+            "Id": 12,
+            "name": "安排物流装柜",
+            "url": "#/orders/orderLoading.html",
+            "property": "选择物流公司"
+          },
+          {
+            "Id": 13,
+            "name": "待运送订单查询",
+            "url": "#/orders/orderShipping.html",
+            "property": "付运单号"
+          },
+          {
+            "Id": 14,
+            "name": "待收货订单查询",
+            "url": "#/orders/orderReceiving.html",
+            "property": "付运单号"
+          },
+          {
+            "Id": 15,
+            "name": "已收货订单查询",
+            "url": "#/orders/orderFinish.html",
+            "property": ""
+          },
+          {
+            "Id": 16,
+            "name": "全部订单",
+            "url": "#/orders/allOrder.html",
+            "property": "可选"
+          }
+        ]
+      },
+      {
+        "Id": 8,
+        "block": "销售战情看板",
+        "list": [
+          {
+            "Id": 21,
+            "name": "产品销售分析看板",
+            "url": "#/orders/analysis.html",
+            "property": ""
+          },
+          {
+            "Id": 22,
+            "name": "地区销售分析看板",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 23,
+            "name": "渠道销售分析看板",
+            "url": "#",
+            "property": ""
+          }
+        ]
+      },
+      {
+        "Id": 9,
+        "block": "销售统计分析",
+        "list": [
+          {
+            "Id": 24,
+            "name": "产品渠道地区销售统计",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 25,
+            "name": "产品渠道地区销售日报",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 26,
+            "name": "产品渠道地区销售周报",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 27,
+            "name": "产品渠道地区销售月报",
+            "url": "#",
+            "property": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"物流",
+    "href":"#",
+    "dropDown":true,
+    "Module": [
+      {
+        "Id": 28,
+        "block": "物流作业",
+        "list": [
+          {
+            "Id": 29,
+            "name": "打包装柜作业",
+            "url": "#/orders/productShipping.html",
+            "property": "物流"
+          },
+          {
+            "Id": 30,
+            "name": "启运登记",
+            "url": "#/orders/orderRegister.html",
+            "property": "门卫"
+          },
+          {
+            "Id": 31,
+            "name": "物流到站卸货",
+            "url": "#/orders/orderUnLoad.html",
+            "property": "转市内配送"
+          },
+          {
+            "Id": 32,
+            "name": "在途运单查询",
+            "url": "#/orders/deliverySearch.html",
+            "property": ""
+          },
+          {
+            "Id": 33,
+            "name": "已结案运单查询",
+            "url": "#/orders/deliveryFinish.html",
+            "property": "可选"
+          },
+          {
+            "Id": 34,
+            "name": "全部运单查询",
+            "url": "#/orders/allDeliveryOrder.html",
+            "property": "可选"
+          }
+        ]
+      },
+      {
+        "Id": 35,
+        "block": "订购流程",
+        "list": [
+          {
+            "Id": 36,
+            "name": "产品销售分析看板",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 37,
+            "name": "地区销售分析看板",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 38,
+            "name": "渠道销售分析看板",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 39,
+            "name": "产品渠道地区销售统计",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 39,
+            "name": "产品渠道地区销售日报",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 39,
+            "name": "产品渠道地区销售周报",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 39,
+            "name": "产品渠道地区销售月报",
+            "url": "#",
+            "property": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"仓储",
+    "href":"#",
+    "dropDown":true,
+    "Module": [
+      {
+        "Id": 40,
+        "block": "库存业务",
+        "list": [
+          {
+            "Id": 41,
+            "name": "采购进货作业",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 42,
+            "name": "采购退货作业",
+            "url": "#",
+            "property": "new"
+          },
+          {
+            "Id": 43,
+            "name": "订单销货",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 44,
+            "name": "订单退货",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 45,
+            "name": "仓库备货（采购建议）",
+            "url": "#",
+            "property": "计划中"
+          },
+          {
+            "Id": 46,
+            "name": "仓库产品库存调整作业",
+            "url": "#",
+            "property": "可选"
+          },
+          {
+            "Id": 47,
+            "name": "仓库存货调拨作业",
+            "url": "#",
+            "property": "必须"
+          }
+        ]
+      },
+      {
+        "Id": 48,
+        "block": "库存统计分析",
+        "list": [
+          {
+            "Id": 49,
+            "name": "仓库产品库存现量查询",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 50,
+            "name": "仓库产品需求量预估",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 51,
+            "name": "仓库产品库存异动明细表",
+            "url": "#",
+            "property": "new"
+          },
+          {
+            "Id": 52,
+            "name": "仓库产品进销存日报表",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 53,
+            "name": "仓库产品进销存月统计表",
+            "url": "#",
+            "property": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"系统管理",
+    "href":"#",
+    "dropDown":true,
+    "Module": [
+      {
+        "Id": 54,
+        "block": "产品管理",
+        "list": [
+          {
+            "Id": 41,
+            "name": "产品基本信息",
+            "url": "#/managements/product.html",
+            "property": ""
+          },
+          {
+            "Id": 42,
+            "name": "产品价格管理",
+            "url": "#",
+            "property": ""
+          }
+        ]
+      },
+      {
+        "Id": 48,
+        "block": "仓库管理",
+        "list": [
+          {
+            "Id": 49,
+            "name": "仓库信息",
+            "url": "#/managements/storeInfo.html",
+            "property": ""
+          }
+        ]
+      },
+      {
+        "Id": 54,
+        "block": "用户管理",
+        "list": [
+          {
+            "Id": 41,
+            "name": "买家管理",
+            "url": "#/managements/userInfo.html",
+            "property": ""
+          },
+          {
+            "Id": 42,
+            "name": "卖家管理",
+            "url": "#",
+            "property": ""
+          },
+          {
+            "Id": 42,
+            "name": "货运公司管理",
+            "url": "#",
+            "property": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"订购系统",
+    "href":"http://192.168.1.48:8089/#/Login/login.html",
+    "dropDown":false,
+    "Module": []
+
+  }
+]

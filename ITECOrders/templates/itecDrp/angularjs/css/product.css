@@ -1,0 +1,109 @@
+.productCode{
+    float: right;
+    font-size: 10px;
+    margin-right: 10px;
+    margin-top: -20px;
+}
+.description{
+    margin-top: 10px;
+}
+.pull-left{
+    margin-right: 20px;
+}
+.product-detail{
+    margin-top: 30px;
+}
+.page-list .pagination {
+    float:right;
+}
+.page-list .pagination span {
+    cursor: pointer;
+}
+.page-list .pagination .separate span{
+    cursor: default;
+    border-top:none;
+    border-bottom:none;
+}
+.page-list .pagination .separate span:hover {
+    background: none;
+}
+.page-list .page-total {
+    float:left;
+    margin: 10px 20px;
+}
+.page-list .page-total input, .page-list .page-total select{
+    height: 26px;
+    border: 1px solid #ddd;
+}
+.page-list .page-total input {
+    width: 40px;
+    padding-left:3px;
+}
+.page-list .page-total select {
+    width: 50px;
+}
+.detail-value{
+    margin-left: 10px;
+}
+
+.comment-username{
+    font-size: 14px;
+    color: #2b4a5c;
+    font-weight: 600;
+}
+.text-color{
+    color: #45535b;
+}
+
+.profile-usermenu ul li {
+    margin: 10px auto;
+}
+
+.profile-usermenu ul li span {
+}
+
+.product-scroll{
+    position: relative;
+    overflow-y: scroll;
+}
+
+.form-group1 ul li {
+    list-style-type: none;
+    margin: auto 20px;
+    float: left;
+}
+
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    background: #fff url("../../../../assets/global/plugins/uniform/images/sprite.png");
+    height: 19px;
+    width: 19px;
+    vertical-align: middle;
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    margin-right: 2px !important;
+    text-align: center;
+    margin-bottom: 3px;
+    margin-top: 1px;
+    background-position: 0 -260px;
+}
+
+input[type="checkbox"]:focus,
+input[type="checkbox"]:hover {
+    background-position: -38px -260px;
+    outline: none;
+}
+
+input[type="checkbox"]:checked {
+    background-position: -76px -260px;
+    outline: none;
+}
+.profile-usermenu ul li span {
+    margin-left: 30px;
+}
+
+
+
+
